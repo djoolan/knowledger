@@ -21,7 +21,7 @@ type Mutation {
         source: String
         author: String
         tags: String
-    ): Article!
+    ): Article!   
     
     createTag(
         label: String!
@@ -31,12 +31,17 @@ type Mutation {
         id: ID!
         label: String!
     ): Tag!
-
 }
 
 type Query {
     articles: [Article!]!
     article(id: ID!): Article
     tags: [Tag!]!
+    tagsWithCount: [TagWithCount!]!
     tag(id: ID!): Tag
+}
+
+type TagWithCount {
+    tag: Tag!
+    count: Int!
 }

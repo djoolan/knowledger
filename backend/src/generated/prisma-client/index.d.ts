@@ -215,9 +215,347 @@ export type UserOrderByInput =
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
+export interface TagUpdateWithWhereUniqueWithoutArticlesInput {
+  where: TagWhereUniqueInput;
+  data: TagUpdateWithoutArticlesDataInput;
+}
+
 export type ArticleWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
+
+export interface ArticleUpdateWithWhereUniqueWithoutTagsInput {
+  where: ArticleWhereUniqueInput;
+  data: ArticleUpdateWithoutTagsDataInput;
+}
+
+export interface TagCreateInput {
+  id?: Maybe<ID_Input>;
+  label: String;
+  articles?: Maybe<ArticleCreateManyWithoutTagsInput>;
+}
+
+export interface ArticleUpdateManyWithoutTagsInput {
+  create?: Maybe<
+    ArticleCreateWithoutTagsInput[] | ArticleCreateWithoutTagsInput
+  >;
+  delete?: Maybe<ArticleWhereUniqueInput[] | ArticleWhereUniqueInput>;
+  connect?: Maybe<ArticleWhereUniqueInput[] | ArticleWhereUniqueInput>;
+  set?: Maybe<ArticleWhereUniqueInput[] | ArticleWhereUniqueInput>;
+  disconnect?: Maybe<ArticleWhereUniqueInput[] | ArticleWhereUniqueInput>;
+  update?: Maybe<
+    | ArticleUpdateWithWhereUniqueWithoutTagsInput[]
+    | ArticleUpdateWithWhereUniqueWithoutTagsInput
+  >;
+  upsert?: Maybe<
+    | ArticleUpsertWithWhereUniqueWithoutTagsInput[]
+    | ArticleUpsertWithWhereUniqueWithoutTagsInput
+  >;
+  deleteMany?: Maybe<ArticleScalarWhereInput[] | ArticleScalarWhereInput>;
+  updateMany?: Maybe<
+    | ArticleUpdateManyWithWhereNestedInput[]
+    | ArticleUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface TagScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  label?: Maybe<String>;
+  label_not?: Maybe<String>;
+  label_in?: Maybe<String[] | String>;
+  label_not_in?: Maybe<String[] | String>;
+  label_lt?: Maybe<String>;
+  label_lte?: Maybe<String>;
+  label_gt?: Maybe<String>;
+  label_gte?: Maybe<String>;
+  label_contains?: Maybe<String>;
+  label_not_contains?: Maybe<String>;
+  label_starts_with?: Maybe<String>;
+  label_not_starts_with?: Maybe<String>;
+  label_ends_with?: Maybe<String>;
+  label_not_ends_with?: Maybe<String>;
+  AND?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
+  OR?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
+  NOT?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
+}
+
+export interface TagUpdateInput {
+  label?: Maybe<String>;
+  articles?: Maybe<ArticleUpdateManyWithoutTagsInput>;
+}
+
+export interface TagSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<TagWhereInput>;
+  AND?: Maybe<TagSubscriptionWhereInput[] | TagSubscriptionWhereInput>;
+  OR?: Maybe<TagSubscriptionWhereInput[] | TagSubscriptionWhereInput>;
+  NOT?: Maybe<TagSubscriptionWhereInput[] | TagSubscriptionWhereInput>;
+}
+
+export interface ArticleSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<ArticleWhereInput>;
+  AND?: Maybe<ArticleSubscriptionWhereInput[] | ArticleSubscriptionWhereInput>;
+  OR?: Maybe<ArticleSubscriptionWhereInput[] | ArticleSubscriptionWhereInput>;
+  NOT?: Maybe<ArticleSubscriptionWhereInput[] | ArticleSubscriptionWhereInput>;
+}
+
+export interface UserUpdateInput {
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  email?: Maybe<String>;
+}
+
+export interface ArticleCreateInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  uri?: Maybe<String>;
+  summary?: Maybe<String>;
+  takeaway?: Maybe<String>;
+  source?: Maybe<String>;
+  author?: Maybe<String>;
+  image?: Maybe<String>;
+  tags?: Maybe<TagCreateManyWithoutArticlesInput>;
+}
+
+export interface TagUpdateManyMutationInput {
+  label?: Maybe<String>;
+}
+
+export interface TagCreateManyWithoutArticlesInput {
+  create?: Maybe<
+    TagCreateWithoutArticlesInput[] | TagCreateWithoutArticlesInput
+  >;
+  connect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+}
+
+export interface ArticleUpdateManyDataInput {
+  title?: Maybe<String>;
+  uri?: Maybe<String>;
+  summary?: Maybe<String>;
+  takeaway?: Maybe<String>;
+  source?: Maybe<String>;
+  author?: Maybe<String>;
+  image?: Maybe<String>;
+}
+
+export interface TagCreateWithoutArticlesInput {
+  id?: Maybe<ID_Input>;
+  label: String;
+}
+
+export interface ArticleScalarWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  title?: Maybe<String>;
+  title_not?: Maybe<String>;
+  title_in?: Maybe<String[] | String>;
+  title_not_in?: Maybe<String[] | String>;
+  title_lt?: Maybe<String>;
+  title_lte?: Maybe<String>;
+  title_gt?: Maybe<String>;
+  title_gte?: Maybe<String>;
+  title_contains?: Maybe<String>;
+  title_not_contains?: Maybe<String>;
+  title_starts_with?: Maybe<String>;
+  title_not_starts_with?: Maybe<String>;
+  title_ends_with?: Maybe<String>;
+  title_not_ends_with?: Maybe<String>;
+  uri?: Maybe<String>;
+  uri_not?: Maybe<String>;
+  uri_in?: Maybe<String[] | String>;
+  uri_not_in?: Maybe<String[] | String>;
+  uri_lt?: Maybe<String>;
+  uri_lte?: Maybe<String>;
+  uri_gt?: Maybe<String>;
+  uri_gte?: Maybe<String>;
+  uri_contains?: Maybe<String>;
+  uri_not_contains?: Maybe<String>;
+  uri_starts_with?: Maybe<String>;
+  uri_not_starts_with?: Maybe<String>;
+  uri_ends_with?: Maybe<String>;
+  uri_not_ends_with?: Maybe<String>;
+  summary?: Maybe<String>;
+  summary_not?: Maybe<String>;
+  summary_in?: Maybe<String[] | String>;
+  summary_not_in?: Maybe<String[] | String>;
+  summary_lt?: Maybe<String>;
+  summary_lte?: Maybe<String>;
+  summary_gt?: Maybe<String>;
+  summary_gte?: Maybe<String>;
+  summary_contains?: Maybe<String>;
+  summary_not_contains?: Maybe<String>;
+  summary_starts_with?: Maybe<String>;
+  summary_not_starts_with?: Maybe<String>;
+  summary_ends_with?: Maybe<String>;
+  summary_not_ends_with?: Maybe<String>;
+  takeaway?: Maybe<String>;
+  takeaway_not?: Maybe<String>;
+  takeaway_in?: Maybe<String[] | String>;
+  takeaway_not_in?: Maybe<String[] | String>;
+  takeaway_lt?: Maybe<String>;
+  takeaway_lte?: Maybe<String>;
+  takeaway_gt?: Maybe<String>;
+  takeaway_gte?: Maybe<String>;
+  takeaway_contains?: Maybe<String>;
+  takeaway_not_contains?: Maybe<String>;
+  takeaway_starts_with?: Maybe<String>;
+  takeaway_not_starts_with?: Maybe<String>;
+  takeaway_ends_with?: Maybe<String>;
+  takeaway_not_ends_with?: Maybe<String>;
+  source?: Maybe<String>;
+  source_not?: Maybe<String>;
+  source_in?: Maybe<String[] | String>;
+  source_not_in?: Maybe<String[] | String>;
+  source_lt?: Maybe<String>;
+  source_lte?: Maybe<String>;
+  source_gt?: Maybe<String>;
+  source_gte?: Maybe<String>;
+  source_contains?: Maybe<String>;
+  source_not_contains?: Maybe<String>;
+  source_starts_with?: Maybe<String>;
+  source_not_starts_with?: Maybe<String>;
+  source_ends_with?: Maybe<String>;
+  source_not_ends_with?: Maybe<String>;
+  author?: Maybe<String>;
+  author_not?: Maybe<String>;
+  author_in?: Maybe<String[] | String>;
+  author_not_in?: Maybe<String[] | String>;
+  author_lt?: Maybe<String>;
+  author_lte?: Maybe<String>;
+  author_gt?: Maybe<String>;
+  author_gte?: Maybe<String>;
+  author_contains?: Maybe<String>;
+  author_not_contains?: Maybe<String>;
+  author_starts_with?: Maybe<String>;
+  author_not_starts_with?: Maybe<String>;
+  author_ends_with?: Maybe<String>;
+  author_not_ends_with?: Maybe<String>;
+  image?: Maybe<String>;
+  image_not?: Maybe<String>;
+  image_in?: Maybe<String[] | String>;
+  image_not_in?: Maybe<String[] | String>;
+  image_lt?: Maybe<String>;
+  image_lte?: Maybe<String>;
+  image_gt?: Maybe<String>;
+  image_gte?: Maybe<String>;
+  image_contains?: Maybe<String>;
+  image_not_contains?: Maybe<String>;
+  image_starts_with?: Maybe<String>;
+  image_not_starts_with?: Maybe<String>;
+  image_ends_with?: Maybe<String>;
+  image_not_ends_with?: Maybe<String>;
+  createdAt?: Maybe<DateTimeInput>;
+  createdAt_not?: Maybe<DateTimeInput>;
+  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  createdAt_lt?: Maybe<DateTimeInput>;
+  createdAt_lte?: Maybe<DateTimeInput>;
+  createdAt_gt?: Maybe<DateTimeInput>;
+  createdAt_gte?: Maybe<DateTimeInput>;
+  updatedAt?: Maybe<DateTimeInput>;
+  updatedAt_not?: Maybe<DateTimeInput>;
+  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  updatedAt_lt?: Maybe<DateTimeInput>;
+  updatedAt_lte?: Maybe<DateTimeInput>;
+  updatedAt_gt?: Maybe<DateTimeInput>;
+  updatedAt_gte?: Maybe<DateTimeInput>;
+  AND?: Maybe<ArticleScalarWhereInput[] | ArticleScalarWhereInput>;
+  OR?: Maybe<ArticleScalarWhereInput[] | ArticleScalarWhereInput>;
+  NOT?: Maybe<ArticleScalarWhereInput[] | ArticleScalarWhereInput>;
+}
+
+export interface ArticleUpdateInput {
+  title?: Maybe<String>;
+  uri?: Maybe<String>;
+  summary?: Maybe<String>;
+  takeaway?: Maybe<String>;
+  source?: Maybe<String>;
+  author?: Maybe<String>;
+  image?: Maybe<String>;
+  tags?: Maybe<TagUpdateManyWithoutArticlesInput>;
+}
+
+export interface ArticleUpsertWithWhereUniqueWithoutTagsInput {
+  where: ArticleWhereUniqueInput;
+  update: ArticleUpdateWithoutTagsDataInput;
+  create: ArticleCreateWithoutTagsInput;
+}
+
+export interface TagUpdateManyWithoutArticlesInput {
+  create?: Maybe<
+    TagCreateWithoutArticlesInput[] | TagCreateWithoutArticlesInput
+  >;
+  delete?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  connect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  set?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  disconnect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
+  update?: Maybe<
+    | TagUpdateWithWhereUniqueWithoutArticlesInput[]
+    | TagUpdateWithWhereUniqueWithoutArticlesInput
+  >;
+  upsert?: Maybe<
+    | TagUpsertWithWhereUniqueWithoutArticlesInput[]
+    | TagUpsertWithWhereUniqueWithoutArticlesInput
+  >;
+  deleteMany?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
+  updateMany?: Maybe<
+    TagUpdateManyWithWhereNestedInput[] | TagUpdateManyWithWhereNestedInput
+  >;
+}
+
+export interface ArticleUpdateWithoutTagsDataInput {
+  title?: Maybe<String>;
+  uri?: Maybe<String>;
+  summary?: Maybe<String>;
+  takeaway?: Maybe<String>;
+  source?: Maybe<String>;
+  author?: Maybe<String>;
+  image?: Maybe<String>;
+}
+
+export interface ArticleCreateWithoutTagsInput {
+  id?: Maybe<ID_Input>;
+  title: String;
+  uri?: Maybe<String>;
+  summary?: Maybe<String>;
+  takeaway?: Maybe<String>;
+  source?: Maybe<String>;
+  author?: Maybe<String>;
+  image?: Maybe<String>;
+}
 
 export interface TagWhereInput {
   id?: Maybe<ID_Input>;
@@ -254,6 +592,28 @@ export interface TagWhereInput {
   AND?: Maybe<TagWhereInput[] | TagWhereInput>;
   OR?: Maybe<TagWhereInput[] | TagWhereInput>;
   NOT?: Maybe<TagWhereInput[] | TagWhereInput>;
+}
+
+export interface TagUpdateWithoutArticlesDataInput {
+  label?: Maybe<String>;
+}
+
+export interface UserCreateInput {
+  id?: Maybe<ID_Input>;
+  firstname: String;
+  lastname?: Maybe<String>;
+  email: String;
+}
+
+export interface TagUpsertWithWhereUniqueWithoutArticlesInput {
+  where: TagWhereUniqueInput;
+  update: TagUpdateWithoutArticlesDataInput;
+  create: TagCreateWithoutArticlesInput;
+}
+
+export interface ArticleUpdateManyWithWhereNestedInput {
+  where: ArticleScalarWhereInput;
+  data: ArticleUpdateManyDataInput;
 }
 
 export interface ArticleWhereInput {
@@ -393,15 +753,6 @@ export interface ArticleWhereInput {
   NOT?: Maybe<ArticleWhereInput[] | ArticleWhereInput>;
 }
 
-export type TagWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-  label?: Maybe<String>;
-}>;
-
-export type UserWhereUniqueInput = AtLeastOne<{
-  id: Maybe<ID_Input>;
-}>;
-
 export interface UserWhereInput {
   id?: Maybe<ID_Input>;
   id_not?: Maybe<ID_Input>;
@@ -464,119 +815,11 @@ export interface UserWhereInput {
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
 }
 
-export interface ArticleCreateInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  uri?: Maybe<String>;
-  summary?: Maybe<String>;
-  takeaway?: Maybe<String>;
-  source?: Maybe<String>;
-  author?: Maybe<String>;
-  image?: Maybe<String>;
-  tags?: Maybe<TagCreateManyWithoutArticlesInput>;
-}
-
-export interface TagCreateManyWithoutArticlesInput {
+export interface ArticleCreateManyWithoutTagsInput {
   create?: Maybe<
-    TagCreateWithoutArticlesInput[] | TagCreateWithoutArticlesInput
+    ArticleCreateWithoutTagsInput[] | ArticleCreateWithoutTagsInput
   >;
-  connect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
-}
-
-export interface TagCreateWithoutArticlesInput {
-  id?: Maybe<ID_Input>;
-  label: String;
-}
-
-export interface ArticleUpdateInput {
-  title?: Maybe<String>;
-  uri?: Maybe<String>;
-  summary?: Maybe<String>;
-  takeaway?: Maybe<String>;
-  source?: Maybe<String>;
-  author?: Maybe<String>;
-  image?: Maybe<String>;
-  tags?: Maybe<TagUpdateManyWithoutArticlesInput>;
-}
-
-export interface TagUpdateManyWithoutArticlesInput {
-  create?: Maybe<
-    TagCreateWithoutArticlesInput[] | TagCreateWithoutArticlesInput
-  >;
-  delete?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
-  connect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
-  set?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
-  disconnect?: Maybe<TagWhereUniqueInput[] | TagWhereUniqueInput>;
-  update?: Maybe<
-    | TagUpdateWithWhereUniqueWithoutArticlesInput[]
-    | TagUpdateWithWhereUniqueWithoutArticlesInput
-  >;
-  upsert?: Maybe<
-    | TagUpsertWithWhereUniqueWithoutArticlesInput[]
-    | TagUpsertWithWhereUniqueWithoutArticlesInput
-  >;
-  deleteMany?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
-  updateMany?: Maybe<
-    TagUpdateManyWithWhereNestedInput[] | TagUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface TagUpdateWithWhereUniqueWithoutArticlesInput {
-  where: TagWhereUniqueInput;
-  data: TagUpdateWithoutArticlesDataInput;
-}
-
-export interface TagUpdateWithoutArticlesDataInput {
-  label?: Maybe<String>;
-}
-
-export interface TagUpsertWithWhereUniqueWithoutArticlesInput {
-  where: TagWhereUniqueInput;
-  update: TagUpdateWithoutArticlesDataInput;
-  create: TagCreateWithoutArticlesInput;
-}
-
-export interface TagScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  label?: Maybe<String>;
-  label_not?: Maybe<String>;
-  label_in?: Maybe<String[] | String>;
-  label_not_in?: Maybe<String[] | String>;
-  label_lt?: Maybe<String>;
-  label_lte?: Maybe<String>;
-  label_gt?: Maybe<String>;
-  label_gte?: Maybe<String>;
-  label_contains?: Maybe<String>;
-  label_not_contains?: Maybe<String>;
-  label_starts_with?: Maybe<String>;
-  label_not_starts_with?: Maybe<String>;
-  label_ends_with?: Maybe<String>;
-  label_not_ends_with?: Maybe<String>;
-  AND?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
-  OR?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
-  NOT?: Maybe<TagScalarWhereInput[] | TagScalarWhereInput>;
-}
-
-export interface TagUpdateManyWithWhereNestedInput {
-  where: TagScalarWhereInput;
-  data: TagUpdateManyDataInput;
-}
-
-export interface TagUpdateManyDataInput {
-  label?: Maybe<String>;
+  connect?: Maybe<ArticleWhereUniqueInput[] | ArticleWhereUniqueInput>;
 }
 
 export interface ArticleUpdateManyMutationInput {
@@ -589,271 +832,13 @@ export interface ArticleUpdateManyMutationInput {
   image?: Maybe<String>;
 }
 
-export interface TagCreateInput {
-  id?: Maybe<ID_Input>;
-  label: String;
-  articles?: Maybe<ArticleCreateManyWithoutTagsInput>;
-}
-
-export interface ArticleCreateManyWithoutTagsInput {
-  create?: Maybe<
-    ArticleCreateWithoutTagsInput[] | ArticleCreateWithoutTagsInput
-  >;
-  connect?: Maybe<ArticleWhereUniqueInput[] | ArticleWhereUniqueInput>;
-}
-
-export interface ArticleCreateWithoutTagsInput {
-  id?: Maybe<ID_Input>;
-  title: String;
-  uri?: Maybe<String>;
-  summary?: Maybe<String>;
-  takeaway?: Maybe<String>;
-  source?: Maybe<String>;
-  author?: Maybe<String>;
-  image?: Maybe<String>;
-}
-
-export interface TagUpdateInput {
-  label?: Maybe<String>;
-  articles?: Maybe<ArticleUpdateManyWithoutTagsInput>;
-}
-
-export interface ArticleUpdateManyWithoutTagsInput {
-  create?: Maybe<
-    ArticleCreateWithoutTagsInput[] | ArticleCreateWithoutTagsInput
-  >;
-  delete?: Maybe<ArticleWhereUniqueInput[] | ArticleWhereUniqueInput>;
-  connect?: Maybe<ArticleWhereUniqueInput[] | ArticleWhereUniqueInput>;
-  set?: Maybe<ArticleWhereUniqueInput[] | ArticleWhereUniqueInput>;
-  disconnect?: Maybe<ArticleWhereUniqueInput[] | ArticleWhereUniqueInput>;
-  update?: Maybe<
-    | ArticleUpdateWithWhereUniqueWithoutTagsInput[]
-    | ArticleUpdateWithWhereUniqueWithoutTagsInput
-  >;
-  upsert?: Maybe<
-    | ArticleUpsertWithWhereUniqueWithoutTagsInput[]
-    | ArticleUpsertWithWhereUniqueWithoutTagsInput
-  >;
-  deleteMany?: Maybe<ArticleScalarWhereInput[] | ArticleScalarWhereInput>;
-  updateMany?: Maybe<
-    | ArticleUpdateManyWithWhereNestedInput[]
-    | ArticleUpdateManyWithWhereNestedInput
-  >;
-}
-
-export interface ArticleUpdateWithWhereUniqueWithoutTagsInput {
-  where: ArticleWhereUniqueInput;
-  data: ArticleUpdateWithoutTagsDataInput;
-}
-
-export interface ArticleUpdateWithoutTagsDataInput {
-  title?: Maybe<String>;
-  uri?: Maybe<String>;
-  summary?: Maybe<String>;
-  takeaway?: Maybe<String>;
-  source?: Maybe<String>;
-  author?: Maybe<String>;
-  image?: Maybe<String>;
-}
-
-export interface ArticleUpsertWithWhereUniqueWithoutTagsInput {
-  where: ArticleWhereUniqueInput;
-  update: ArticleUpdateWithoutTagsDataInput;
-  create: ArticleCreateWithoutTagsInput;
-}
-
-export interface ArticleScalarWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  title?: Maybe<String>;
-  title_not?: Maybe<String>;
-  title_in?: Maybe<String[] | String>;
-  title_not_in?: Maybe<String[] | String>;
-  title_lt?: Maybe<String>;
-  title_lte?: Maybe<String>;
-  title_gt?: Maybe<String>;
-  title_gte?: Maybe<String>;
-  title_contains?: Maybe<String>;
-  title_not_contains?: Maybe<String>;
-  title_starts_with?: Maybe<String>;
-  title_not_starts_with?: Maybe<String>;
-  title_ends_with?: Maybe<String>;
-  title_not_ends_with?: Maybe<String>;
-  uri?: Maybe<String>;
-  uri_not?: Maybe<String>;
-  uri_in?: Maybe<String[] | String>;
-  uri_not_in?: Maybe<String[] | String>;
-  uri_lt?: Maybe<String>;
-  uri_lte?: Maybe<String>;
-  uri_gt?: Maybe<String>;
-  uri_gte?: Maybe<String>;
-  uri_contains?: Maybe<String>;
-  uri_not_contains?: Maybe<String>;
-  uri_starts_with?: Maybe<String>;
-  uri_not_starts_with?: Maybe<String>;
-  uri_ends_with?: Maybe<String>;
-  uri_not_ends_with?: Maybe<String>;
-  summary?: Maybe<String>;
-  summary_not?: Maybe<String>;
-  summary_in?: Maybe<String[] | String>;
-  summary_not_in?: Maybe<String[] | String>;
-  summary_lt?: Maybe<String>;
-  summary_lte?: Maybe<String>;
-  summary_gt?: Maybe<String>;
-  summary_gte?: Maybe<String>;
-  summary_contains?: Maybe<String>;
-  summary_not_contains?: Maybe<String>;
-  summary_starts_with?: Maybe<String>;
-  summary_not_starts_with?: Maybe<String>;
-  summary_ends_with?: Maybe<String>;
-  summary_not_ends_with?: Maybe<String>;
-  takeaway?: Maybe<String>;
-  takeaway_not?: Maybe<String>;
-  takeaway_in?: Maybe<String[] | String>;
-  takeaway_not_in?: Maybe<String[] | String>;
-  takeaway_lt?: Maybe<String>;
-  takeaway_lte?: Maybe<String>;
-  takeaway_gt?: Maybe<String>;
-  takeaway_gte?: Maybe<String>;
-  takeaway_contains?: Maybe<String>;
-  takeaway_not_contains?: Maybe<String>;
-  takeaway_starts_with?: Maybe<String>;
-  takeaway_not_starts_with?: Maybe<String>;
-  takeaway_ends_with?: Maybe<String>;
-  takeaway_not_ends_with?: Maybe<String>;
-  source?: Maybe<String>;
-  source_not?: Maybe<String>;
-  source_in?: Maybe<String[] | String>;
-  source_not_in?: Maybe<String[] | String>;
-  source_lt?: Maybe<String>;
-  source_lte?: Maybe<String>;
-  source_gt?: Maybe<String>;
-  source_gte?: Maybe<String>;
-  source_contains?: Maybe<String>;
-  source_not_contains?: Maybe<String>;
-  source_starts_with?: Maybe<String>;
-  source_not_starts_with?: Maybe<String>;
-  source_ends_with?: Maybe<String>;
-  source_not_ends_with?: Maybe<String>;
-  author?: Maybe<String>;
-  author_not?: Maybe<String>;
-  author_in?: Maybe<String[] | String>;
-  author_not_in?: Maybe<String[] | String>;
-  author_lt?: Maybe<String>;
-  author_lte?: Maybe<String>;
-  author_gt?: Maybe<String>;
-  author_gte?: Maybe<String>;
-  author_contains?: Maybe<String>;
-  author_not_contains?: Maybe<String>;
-  author_starts_with?: Maybe<String>;
-  author_not_starts_with?: Maybe<String>;
-  author_ends_with?: Maybe<String>;
-  author_not_ends_with?: Maybe<String>;
-  image?: Maybe<String>;
-  image_not?: Maybe<String>;
-  image_in?: Maybe<String[] | String>;
-  image_not_in?: Maybe<String[] | String>;
-  image_lt?: Maybe<String>;
-  image_lte?: Maybe<String>;
-  image_gt?: Maybe<String>;
-  image_gte?: Maybe<String>;
-  image_contains?: Maybe<String>;
-  image_not_contains?: Maybe<String>;
-  image_starts_with?: Maybe<String>;
-  image_not_starts_with?: Maybe<String>;
-  image_ends_with?: Maybe<String>;
-  image_not_ends_with?: Maybe<String>;
-  createdAt?: Maybe<DateTimeInput>;
-  createdAt_not?: Maybe<DateTimeInput>;
-  createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  createdAt_lt?: Maybe<DateTimeInput>;
-  createdAt_lte?: Maybe<DateTimeInput>;
-  createdAt_gt?: Maybe<DateTimeInput>;
-  createdAt_gte?: Maybe<DateTimeInput>;
-  updatedAt?: Maybe<DateTimeInput>;
-  updatedAt_not?: Maybe<DateTimeInput>;
-  updatedAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
-  updatedAt_lt?: Maybe<DateTimeInput>;
-  updatedAt_lte?: Maybe<DateTimeInput>;
-  updatedAt_gt?: Maybe<DateTimeInput>;
-  updatedAt_gte?: Maybe<DateTimeInput>;
-  AND?: Maybe<ArticleScalarWhereInput[] | ArticleScalarWhereInput>;
-  OR?: Maybe<ArticleScalarWhereInput[] | ArticleScalarWhereInput>;
-  NOT?: Maybe<ArticleScalarWhereInput[] | ArticleScalarWhereInput>;
-}
-
-export interface ArticleUpdateManyWithWhereNestedInput {
-  where: ArticleScalarWhereInput;
-  data: ArticleUpdateManyDataInput;
-}
-
-export interface ArticleUpdateManyDataInput {
-  title?: Maybe<String>;
-  uri?: Maybe<String>;
-  summary?: Maybe<String>;
-  takeaway?: Maybe<String>;
-  source?: Maybe<String>;
-  author?: Maybe<String>;
-  image?: Maybe<String>;
-}
-
-export interface TagUpdateManyMutationInput {
+export interface TagUpdateManyDataInput {
   label?: Maybe<String>;
 }
 
-export interface UserCreateInput {
-  id?: Maybe<ID_Input>;
-  firstname: String;
-  lastname?: Maybe<String>;
-  email: String;
-}
-
-export interface UserUpdateInput {
-  firstname?: Maybe<String>;
-  lastname?: Maybe<String>;
-  email?: Maybe<String>;
-}
-
-export interface UserUpdateManyMutationInput {
-  firstname?: Maybe<String>;
-  lastname?: Maybe<String>;
-  email?: Maybe<String>;
-}
-
-export interface ArticleSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<ArticleWhereInput>;
-  AND?: Maybe<ArticleSubscriptionWhereInput[] | ArticleSubscriptionWhereInput>;
-  OR?: Maybe<ArticleSubscriptionWhereInput[] | ArticleSubscriptionWhereInput>;
-  NOT?: Maybe<ArticleSubscriptionWhereInput[] | ArticleSubscriptionWhereInput>;
-}
-
-export interface TagSubscriptionWhereInput {
-  mutation_in?: Maybe<MutationType[] | MutationType>;
-  updatedFields_contains?: Maybe<String>;
-  updatedFields_contains_every?: Maybe<String[] | String>;
-  updatedFields_contains_some?: Maybe<String[] | String>;
-  node?: Maybe<TagWhereInput>;
-  AND?: Maybe<TagSubscriptionWhereInput[] | TagSubscriptionWhereInput>;
-  OR?: Maybe<TagSubscriptionWhereInput[] | TagSubscriptionWhereInput>;
-  NOT?: Maybe<TagSubscriptionWhereInput[] | TagSubscriptionWhereInput>;
+export interface TagUpdateManyWithWhereNestedInput {
+  where: TagScalarWhereInput;
+  data: TagUpdateManyDataInput;
 }
 
 export interface UserSubscriptionWhereInput {
@@ -867,8 +852,369 @@ export interface UserSubscriptionWhereInput {
   NOT?: Maybe<UserSubscriptionWhereInput[] | UserSubscriptionWhereInput>;
 }
 
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
+export type TagWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+  label?: Maybe<String>;
+}>;
+
+export interface UserUpdateManyMutationInput {
+  firstname?: Maybe<String>;
+  lastname?: Maybe<String>;
+  email?: Maybe<String>;
+}
+
 export interface NodeNode {
   id: ID_Output;
+}
+
+export interface UserPreviousValues {
+  id: ID_Output;
+  firstname: String;
+  lastname?: String;
+  email: String;
+}
+
+export interface UserPreviousValuesPromise
+  extends Promise<UserPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  firstname: () => Promise<String>;
+  lastname: () => Promise<String>;
+  email: () => Promise<String>;
+}
+
+export interface UserPreviousValuesSubscription
+  extends Promise<AsyncIterator<UserPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  firstname: () => Promise<AsyncIterator<String>>;
+  lastname: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+}
+
+export interface TagConnection {
+  pageInfo: PageInfo;
+  edges: TagEdge[];
+}
+
+export interface TagConnectionPromise
+  extends Promise<TagConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<TagEdge>>() => T;
+  aggregate: <T = AggregateTagPromise>() => T;
+}
+
+export interface TagConnectionSubscription
+  extends Promise<AsyncIterator<TagConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<TagEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateTagSubscription>() => T;
+}
+
+export interface Tag {
+  id: ID_Output;
+  label: String;
+}
+
+export interface TagPromise extends Promise<Tag>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  label: () => Promise<String>;
+  articles: <T = FragmentableArray<Article>>(args?: {
+    where?: ArticleWhereInput;
+    orderBy?: ArticleOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface TagSubscription
+  extends Promise<AsyncIterator<Tag>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  label: () => Promise<AsyncIterator<String>>;
+  articles: <T = Promise<AsyncIterator<ArticleSubscription>>>(args?: {
+    where?: ArticleWhereInput;
+    orderBy?: ArticleOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface TagNullablePromise extends Promise<Tag | null>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  label: () => Promise<String>;
+  articles: <T = FragmentableArray<Article>>(args?: {
+    where?: ArticleWhereInput;
+    orderBy?: ArticleOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => T;
+}
+
+export interface AggregateArticle {
+  count: Int;
+}
+
+export interface AggregateArticlePromise
+  extends Promise<AggregateArticle>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateArticleSubscription
+  extends Promise<AsyncIterator<AggregateArticle>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ArticleEdge {
+  node: Article;
+  cursor: String;
+}
+
+export interface ArticleEdgePromise extends Promise<ArticleEdge>, Fragmentable {
+  node: <T = ArticlePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ArticleEdgeSubscription
+  extends Promise<AsyncIterator<ArticleEdge>>,
+    Fragmentable {
+  node: <T = ArticleSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface BatchPayload {
+  count: Long;
+}
+
+export interface BatchPayloadPromise
+  extends Promise<BatchPayload>,
+    Fragmentable {
+  count: () => Promise<Long>;
+}
+
+export interface BatchPayloadSubscription
+  extends Promise<AsyncIterator<BatchPayload>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface AggregateUser {
+  count: Int;
+}
+
+export interface AggregateUserPromise
+  extends Promise<AggregateUser>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateUserSubscription
+  extends Promise<AsyncIterator<AggregateUser>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface TagSubscriptionPayload {
+  mutation: MutationType;
+  node: Tag;
+  updatedFields: String[];
+  previousValues: TagPreviousValues;
+}
+
+export interface TagSubscriptionPayloadPromise
+  extends Promise<TagSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = TagPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = TagPreviousValuesPromise>() => T;
+}
+
+export interface TagSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<TagSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = TagSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = TagPreviousValuesSubscription>() => T;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
+}
+
+export interface PageInfo {
+  hasNextPage: Boolean;
+  hasPreviousPage: Boolean;
+  startCursor?: String;
+  endCursor?: String;
+}
+
+export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
+  hasNextPage: () => Promise<Boolean>;
+  hasPreviousPage: () => Promise<Boolean>;
+  startCursor: () => Promise<String>;
+  endCursor: () => Promise<String>;
+}
+
+export interface PageInfoSubscription
+  extends Promise<AsyncIterator<PageInfo>>,
+    Fragmentable {
+  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
+  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
+  startCursor: () => Promise<AsyncIterator<String>>;
+  endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface User {
+  id: ID_Output;
+  firstname: String;
+  lastname?: String;
+  email: String;
+}
+
+export interface UserPromise extends Promise<User>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  firstname: () => Promise<String>;
+  lastname: () => Promise<String>;
+  email: () => Promise<String>;
+}
+
+export interface UserSubscription
+  extends Promise<AsyncIterator<User>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  firstname: () => Promise<AsyncIterator<String>>;
+  lastname: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+}
+
+export interface UserNullablePromise
+  extends Promise<User | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  firstname: () => Promise<String>;
+  lastname: () => Promise<String>;
+  email: () => Promise<String>;
+}
+
+export interface TagEdge {
+  node: Tag;
+  cursor: String;
+}
+
+export interface TagEdgePromise extends Promise<TagEdge>, Fragmentable {
+  node: <T = TagPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface TagEdgeSubscription
+  extends Promise<AsyncIterator<TagEdge>>,
+    Fragmentable {
+  node: <T = TagSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ArticlePreviousValues {
+  id: ID_Output;
+  title: String;
+  uri?: String;
+  summary?: String;
+  takeaway?: String;
+  source?: String;
+  author?: String;
+  image?: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+}
+
+export interface ArticlePreviousValuesPromise
+  extends Promise<ArticlePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  title: () => Promise<String>;
+  uri: () => Promise<String>;
+  summary: () => Promise<String>;
+  takeaway: () => Promise<String>;
+  source: () => Promise<String>;
+  author: () => Promise<String>;
+  image: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface ArticlePreviousValuesSubscription
+  extends Promise<AsyncIterator<ArticlePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  title: () => Promise<AsyncIterator<String>>;
+  uri: () => Promise<AsyncIterator<String>>;
+  summary: () => Promise<AsyncIterator<String>>;
+  takeaway: () => Promise<AsyncIterator<String>>;
+  source: () => Promise<AsyncIterator<String>>;
+  author: () => Promise<AsyncIterator<String>>;
+  image: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ArticleSubscriptionPayload {
+  mutation: MutationType;
+  node: Article;
+  updatedFields: String[];
+  previousValues: ArticlePreviousValues;
+}
+
+export interface ArticleSubscriptionPayloadPromise
+  extends Promise<ArticleSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ArticlePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ArticlePreviousValuesPromise>() => T;
+}
+
+export interface ArticleSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ArticleSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ArticleSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ArticlePreviousValuesSubscription>() => T;
 }
 
 export interface Article {
@@ -954,55 +1300,6 @@ export interface ArticleNullablePromise
   updatedAt: () => Promise<DateTimeOutput>;
 }
 
-export interface Tag {
-  id: ID_Output;
-  label: String;
-}
-
-export interface TagPromise extends Promise<Tag>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  label: () => Promise<String>;
-  articles: <T = FragmentableArray<Article>>(args?: {
-    where?: ArticleWhereInput;
-    orderBy?: ArticleOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface TagSubscription
-  extends Promise<AsyncIterator<Tag>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  label: () => Promise<AsyncIterator<String>>;
-  articles: <T = Promise<AsyncIterator<ArticleSubscription>>>(args?: {
-    where?: ArticleWhereInput;
-    orderBy?: ArticleOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
-export interface TagNullablePromise extends Promise<Tag | null>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  label: () => Promise<String>;
-  articles: <T = FragmentableArray<Article>>(args?: {
-    where?: ArticleWhereInput;
-    orderBy?: ArticleOrderByInput;
-    skip?: Int;
-    after?: String;
-    before?: String;
-    first?: Int;
-    last?: Int;
-  }) => T;
-}
-
 export interface ArticleConnection {
   pageInfo: PageInfo;
   edges: ArticleEdge[];
@@ -1022,330 +1319,6 @@ export interface ArticleConnectionSubscription
   pageInfo: <T = PageInfoSubscription>() => T;
   edges: <T = Promise<AsyncIterator<ArticleEdgeSubscription>>>() => T;
   aggregate: <T = AggregateArticleSubscription>() => T;
-}
-
-export interface PageInfo {
-  hasNextPage: Boolean;
-  hasPreviousPage: Boolean;
-  startCursor?: String;
-  endCursor?: String;
-}
-
-export interface PageInfoPromise extends Promise<PageInfo>, Fragmentable {
-  hasNextPage: () => Promise<Boolean>;
-  hasPreviousPage: () => Promise<Boolean>;
-  startCursor: () => Promise<String>;
-  endCursor: () => Promise<String>;
-}
-
-export interface PageInfoSubscription
-  extends Promise<AsyncIterator<PageInfo>>,
-    Fragmentable {
-  hasNextPage: () => Promise<AsyncIterator<Boolean>>;
-  hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
-  startCursor: () => Promise<AsyncIterator<String>>;
-  endCursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface ArticleEdge {
-  node: Article;
-  cursor: String;
-}
-
-export interface ArticleEdgePromise extends Promise<ArticleEdge>, Fragmentable {
-  node: <T = ArticlePromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface ArticleEdgeSubscription
-  extends Promise<AsyncIterator<ArticleEdge>>,
-    Fragmentable {
-  node: <T = ArticleSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateArticle {
-  count: Int;
-}
-
-export interface AggregateArticlePromise
-  extends Promise<AggregateArticle>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateArticleSubscription
-  extends Promise<AsyncIterator<AggregateArticle>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface TagConnection {
-  pageInfo: PageInfo;
-  edges: TagEdge[];
-}
-
-export interface TagConnectionPromise
-  extends Promise<TagConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<TagEdge>>() => T;
-  aggregate: <T = AggregateTagPromise>() => T;
-}
-
-export interface TagConnectionSubscription
-  extends Promise<AsyncIterator<TagConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<TagEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateTagSubscription>() => T;
-}
-
-export interface TagEdge {
-  node: Tag;
-  cursor: String;
-}
-
-export interface TagEdgePromise extends Promise<TagEdge>, Fragmentable {
-  node: <T = TagPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface TagEdgeSubscription
-  extends Promise<AsyncIterator<TagEdge>>,
-    Fragmentable {
-  node: <T = TagSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateTag {
-  count: Int;
-}
-
-export interface AggregateTagPromise
-  extends Promise<AggregateTag>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateTagSubscription
-  extends Promise<AsyncIterator<AggregateTag>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface User {
-  id: ID_Output;
-  firstname: String;
-  lastname?: String;
-  email: String;
-}
-
-export interface UserPromise extends Promise<User>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  firstname: () => Promise<String>;
-  lastname: () => Promise<String>;
-  email: () => Promise<String>;
-}
-
-export interface UserSubscription
-  extends Promise<AsyncIterator<User>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  firstname: () => Promise<AsyncIterator<String>>;
-  lastname: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
-}
-
-export interface UserNullablePromise
-  extends Promise<User | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  firstname: () => Promise<String>;
-  lastname: () => Promise<String>;
-  email: () => Promise<String>;
-}
-
-export interface UserConnection {
-  pageInfo: PageInfo;
-  edges: UserEdge[];
-}
-
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
-    Fragmentable {
-  pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
-}
-
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
-    Fragmentable {
-  pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
-}
-
-export interface UserEdge {
-  node: User;
-  cursor: String;
-}
-
-export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
-  node: <T = UserPromise>() => T;
-  cursor: () => Promise<String>;
-}
-
-export interface UserEdgeSubscription
-  extends Promise<AsyncIterator<UserEdge>>,
-    Fragmentable {
-  node: <T = UserSubscription>() => T;
-  cursor: () => Promise<AsyncIterator<String>>;
-}
-
-export interface AggregateUser {
-  count: Int;
-}
-
-export interface AggregateUserPromise
-  extends Promise<AggregateUser>,
-    Fragmentable {
-  count: () => Promise<Int>;
-}
-
-export interface AggregateUserSubscription
-  extends Promise<AsyncIterator<AggregateUser>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface BatchPayload {
-  count: Long;
-}
-
-export interface BatchPayloadPromise
-  extends Promise<BatchPayload>,
-    Fragmentable {
-  count: () => Promise<Long>;
-}
-
-export interface BatchPayloadSubscription
-  extends Promise<AsyncIterator<BatchPayload>>,
-    Fragmentable {
-  count: () => Promise<AsyncIterator<Long>>;
-}
-
-export interface ArticleSubscriptionPayload {
-  mutation: MutationType;
-  node: Article;
-  updatedFields: String[];
-  previousValues: ArticlePreviousValues;
-}
-
-export interface ArticleSubscriptionPayloadPromise
-  extends Promise<ArticleSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = ArticlePromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = ArticlePreviousValuesPromise>() => T;
-}
-
-export interface ArticleSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<ArticleSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = ArticleSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = ArticlePreviousValuesSubscription>() => T;
-}
-
-export interface ArticlePreviousValues {
-  id: ID_Output;
-  title: String;
-  uri?: String;
-  summary?: String;
-  takeaway?: String;
-  source?: String;
-  author?: String;
-  image?: String;
-  createdAt: DateTimeOutput;
-  updatedAt: DateTimeOutput;
-}
-
-export interface ArticlePreviousValuesPromise
-  extends Promise<ArticlePreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  title: () => Promise<String>;
-  uri: () => Promise<String>;
-  summary: () => Promise<String>;
-  takeaway: () => Promise<String>;
-  source: () => Promise<String>;
-  author: () => Promise<String>;
-  image: () => Promise<String>;
-  createdAt: () => Promise<DateTimeOutput>;
-  updatedAt: () => Promise<DateTimeOutput>;
-}
-
-export interface ArticlePreviousValuesSubscription
-  extends Promise<AsyncIterator<ArticlePreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  title: () => Promise<AsyncIterator<String>>;
-  uri: () => Promise<AsyncIterator<String>>;
-  summary: () => Promise<AsyncIterator<String>>;
-  takeaway: () => Promise<AsyncIterator<String>>;
-  source: () => Promise<AsyncIterator<String>>;
-  author: () => Promise<AsyncIterator<String>>;
-  image: () => Promise<AsyncIterator<String>>;
-  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
-}
-
-export interface TagSubscriptionPayload {
-  mutation: MutationType;
-  node: Tag;
-  updatedFields: String[];
-  previousValues: TagPreviousValues;
-}
-
-export interface TagSubscriptionPayloadPromise
-  extends Promise<TagSubscriptionPayload>,
-    Fragmentable {
-  mutation: () => Promise<MutationType>;
-  node: <T = TagPromise>() => T;
-  updatedFields: () => Promise<String[]>;
-  previousValues: <T = TagPreviousValuesPromise>() => T;
-}
-
-export interface TagSubscriptionPayloadSubscription
-  extends Promise<AsyncIterator<TagSubscriptionPayload>>,
-    Fragmentable {
-  mutation: () => Promise<AsyncIterator<MutationType>>;
-  node: <T = TagSubscription>() => T;
-  updatedFields: () => Promise<AsyncIterator<String[]>>;
-  previousValues: <T = TagPreviousValuesSubscription>() => T;
-}
-
-export interface TagPreviousValues {
-  id: ID_Output;
-  label: String;
-}
-
-export interface TagPreviousValuesPromise
-  extends Promise<TagPreviousValues>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  label: () => Promise<String>;
-}
-
-export interface TagPreviousValuesSubscription
-  extends Promise<AsyncIterator<TagPreviousValues>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  label: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserSubscriptionPayload {
@@ -1373,41 +1346,57 @@ export interface UserSubscriptionPayloadSubscription
   previousValues: <T = UserPreviousValuesSubscription>() => T;
 }
 
-export interface UserPreviousValues {
-  id: ID_Output;
-  firstname: String;
-  lastname?: String;
-  email: String;
+export interface AggregateTag {
+  count: Int;
 }
 
-export interface UserPreviousValuesPromise
-  extends Promise<UserPreviousValues>,
+export interface AggregateTagPromise
+  extends Promise<AggregateTag>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateTagSubscription
+  extends Promise<AsyncIterator<AggregateTag>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface TagPreviousValues {
+  id: ID_Output;
+  label: String;
+}
+
+export interface TagPreviousValuesPromise
+  extends Promise<TagPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  firstname: () => Promise<String>;
-  lastname: () => Promise<String>;
-  email: () => Promise<String>;
+  label: () => Promise<String>;
 }
 
-export interface UserPreviousValuesSubscription
-  extends Promise<AsyncIterator<UserPreviousValues>>,
+export interface TagPreviousValuesSubscription
+  extends Promise<AsyncIterator<TagPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  firstname: () => Promise<AsyncIterator<String>>;
-  lastname: () => Promise<AsyncIterator<String>>;
-  email: () => Promise<AsyncIterator<String>>;
+  label: () => Promise<AsyncIterator<String>>;
 }
 
-/*
-The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
-*/
-export type ID_Input = string | number;
-export type ID_Output = string;
+export interface UserEdge {
+  node: User;
+  cursor: String;
+}
 
-/*
-The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
-*/
-export type String = string;
+export interface UserEdgePromise extends Promise<UserEdge>, Fragmentable {
+  node: <T = UserPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface UserEdgeSubscription
+  extends Promise<AsyncIterator<UserEdge>>,
+    Fragmentable {
+  node: <T = UserSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
 
 /*
 DateTime scalar input type, allowing Date
@@ -1419,17 +1408,28 @@ DateTime scalar output type, which is always a string
 */
 export type DateTimeOutput = string;
 
+export type Long = string;
+
+/*
+The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.
+*/
+export type ID_Input = string | number;
+export type ID_Output = string;
+
 /*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1.
 */
 export type Int = number;
 
 /*
+The `String` scalar type represents textual data, represented as UTF-8 character sequences. The String type is most often used by GraphQL to represent free-form human-readable text.
+*/
+export type String = string;
+
+/*
 The `Boolean` scalar type represents `true` or `false`.
 */
 export type Boolean = boolean;
-
-export type Long = string;
 
 /**
  * Model Metadata

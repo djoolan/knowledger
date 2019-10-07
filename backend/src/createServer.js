@@ -1,15 +1,23 @@
 const { GraphQLServer } = require('graphql-yoga')
 const { prisma } = require('./generated/prisma-client')
-const Mutation = require('./resolvers/Mutation')
-const Query = require('./resolvers/Query')
+const ArticleQuery = require('./resolvers/article/Query')
+const ArticleMutation = require('./resolvers/article/Mutation')
+const TagQuery = require('./resolvers/tag/Query')
+const TagMutation = require('./resolvers/tag/Mutation')
 const db = require('./db')
 
 function createServer() {
     return new GraphQLServer({
         typeDefs: 'src/schema.graphql',
         resolvers: {
-            Mutation,
-            Query
+            Query: {
+                ...ArticleQuery,
+                ...TagQuery,
+            },
+            Mutation: {
+                ...ArticleMutation,
+                ...TagMutation,
+            },
         },
         resolverValidationOptions: {
             requireResolversForResolveType: false
