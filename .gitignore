@@ -3,6 +3,10 @@
 **/node_modules
 
 .history
+.next
 .vscode
 
 /backend/variables.env
+/backend/data
+
+/frontend/config.js
