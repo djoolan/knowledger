@@ -1,7 +1,8 @@
 **/.DS_Store
 
-/backend/node_modules
-/frontend/node_modules
+**/node_modules
 
 .history
 .vscode
+
+/backend/variables.env

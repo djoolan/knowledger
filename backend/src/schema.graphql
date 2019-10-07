@@ -1,0 +1,42 @@
+# import * from './generated/prisma.graphql'
+
+type Mutation {
+    createArticle(
+        title: String!
+        uri: String
+        summary: String
+        takeaway: String
+        source: String
+        author: String
+        image: String
+        tags: String
+    ): Article!
+
+    updateArticle(
+        id: ID!
+        title: String!
+        uri: String
+        summary: String
+        takeaway: String
+        source: String
+        author: String
+        tags: String
+    ): Article!
+    
+    createTag(
+        label: String!
+    ): Tag!
+
+    updateTag(
+        id: ID!
+        label: String!
+    ): Tag!
+
+}
+
+type Query {
+    articles: [Article!]!
+    article(id: ID!): Article
+    tags: [Tag!]!
+    tag(id: ID!): Tag
+}

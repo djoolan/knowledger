@@ -1,0 +1,26 @@
+type User {
+  id: ID! @id
+  firstname: String!
+  lastname: String
+  email: String!
+}
+
+type Article {
+  id: ID! @id
+  title: String!
+  uri: String
+  summary: String
+  takeaway: String
+  source: String
+  author: String
+  image: String
+  tags: [Tag!]!
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Tag {
+  id: ID! @id
+  label: String! @unique
+  articles: [Article!]!
+}
