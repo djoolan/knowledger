@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import StyledArticleForm from './styles/StyledArticleForm'
 import Error from '../../Error'
-import Router from 'next/router';
+import Router from 'next/router'
 import ArticleTitleField from './fields/ArticleTitleField'
 import ArticleUriField from './fields/ArticleUriField'
 import ArticleAuthorField from './fields/ArticleAuthorField'

@@ -1,27 +1,75 @@
 import React, { Component, Fragment } from 'react'
 import { withRouter } from 'next/router'
 import { Query } from 'react-apollo'
+import ARTICLES_QUERY from '../../queries/ARTICLES_QUERY'
 import ARTICLE_QUERY from '../../queries/ARTICLE_QUERY'
+import ArticleCreate from './ArticleCreate'
 import ArticleUpdate from './ArticleUpdate'
 import ArticleDelete from './ArticleDelete'
 
 function Article({ router }) {
     const { id } = router.query
-    return (
-        <Query query={ARTICLE_QUERY} variables={{ id }}>
-            {({ data, loading, error }) => {
-                if (loading) return <p>Loading</p>
-                if (error) return <p>Error : { error.message }</p>
-                const { article } = data
-                return (
-                    <Fragment>
-                        <ArticleDelete article={article} />
-                        <ArticleUpdate article={article} />
-                    </Fragment>
-                )
-            }} 
-        </Query>
-    )
+    async function updateCacheAfterCreate(store, article) {
+        console.log('updateCacheAfterCreate, article', article, store)
+        try {
+            const data = await store.readQuery({ query: ARTICLES_QUERY })
+            data.articles.push(article)
+        } catch (e) {
+        }
+        router.push({
+            pathname: `/article/${article.id}`,
+        })
+    }
+
+    function updateCacheAfterUpdate(store, article) {
+        console.log('updateCacheAfterUpdate, article', article)
+        try {
+            const data = store.readQuery({ query: ARTICLES_QUERY })
+            const cachedArticle = data.articles.find(a => a.id === article.id)
+            Object.keys(article).forEach(p => cachedArticle[p] = article[p])
+        } catch (e) {
+        }
+    }
+
+    function updateCacheAfterDelete(store, article) {
+        console.log('updateCacheAfterDelete, article', article)
+        try {
+            const data = store.readQuery({ query: ARTICLES_QUERY })
+            data.articles = data.articles.filter(a => a.id !== article.id)
+        } catch (e) {
+        }
+        router.push({
+            pathname: '/articles',
+        })
+    }
+
+    return id === 'create'
+        ? (
+            <ArticleCreate 
+                update={updateCacheAfterCreate}
+            />
+        )
+        : (
+            <Query query={ARTICLE_QUERY} variables={{ id }}>
+                {({ data, loading, error }) => {
+                    if (loading) return <p>Loading</p>
+                    if (error) return <p>Error : { error.message }</p>
+                    const { article } = data
+                    return (
+                        <Fragment>
+                            <ArticleDelete 
+                                article={article} 
+                                update={updateCacheAfterDelete}
+                            />
+                            <ArticleUpdate
+                                article={article}
+                                update={updateCacheAfterUpdate}
+                            />
+                        </Fragment>
+                    )
+                }} 
+            </Query>
+        )
 }
 
 export default withRouter(Article)

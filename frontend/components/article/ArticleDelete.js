@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Mutation } from 'react-apollo'
 import ARTICLE_DELETE_MUTATION from '../../queries/ARTICLE_DELETE_MUTATION'
-import Router from 'next/router';
+import Router from 'next/router'
 import StyledArticleForm from '././form/styles/StyledArticleForm'
 import Error from '../Error'
 
@@ -12,10 +12,14 @@ class ArticleDelete extends Component {
     }
     
     render() {
+        const { update } = this.props
         return (
-            <Mutation mutation={ARTICLE_DELETE_MUTATION} variables={this.state}>
+            <Mutation 
+                mutation={ARTICLE_DELETE_MUTATION} 
+                variables={this.state}
+                update={(store, { data: { deleteArticle } }) => update(store, deleteArticle)}
+            >
             {(deleteArticle, { data, error, loading }) => {
-                console.log('ArticleDelete', this.state)
                 return (
                     <StyledArticleForm
                         className="delete"
@@ -23,7 +27,6 @@ class ArticleDelete extends Component {
                         aria-busy={loading}
                         onSubmit={async e => { 
                             e.preventDefault()
-                            console.log('ArticleDelete, onSubmit', this.state)
                             const response = await deleteArticle();
                             Router.push({
                                 pathname: '/articles',
@@ -42,6 +45,8 @@ class ArticleDelete extends Component {
 }
 
 ArticleDelete.propTypes = {
-    article: PropTypes.object.isRequired
+    article: PropTypes.object.isRequired,
+    update: PropTypes.func.isRequired,
 }
+
 export default ArticleDelete

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Mutation } from 'react-apollo'
 import ARTICLE_CREATE_MUTATION from '../../queries/ARTICLE_CREATE_MUTATION'
 import Error from '../Error'
@@ -36,8 +37,13 @@ class ArticleCreate extends Component {
     }
 
     render() {
+        const { update } = this.props
         return (
-            <Mutation mutation={ARTICLE_CREATE_MUTATION} variables={this.state}>
+            <Mutation 
+                mutation={ARTICLE_CREATE_MUTATION} 
+                variables={this.state}
+                update={(store, { data: { createArticle } }) => update(store, createArticle)}
+            >
             {(createArticle, { data, error, loading }) => {
                 console.log(data)
                 console.log(this.state)
@@ -55,6 +61,10 @@ class ArticleCreate extends Component {
             </Mutation>
         )
     }
+}
+
+ArticleCreate.propTypes = {
+    update: PropTypes.func.isRequired,
 }
 
 export default ArticleCreate

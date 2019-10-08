@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Mutation } from 'react-apollo'
+import ARTICLES_QUERY from '../../queries/ARTICLES_QUERY'
 import ARTICLE_UPDATE_MUTATION from '../../queries/ARTICLE_UPDATE_MUTATION'
-import Router from 'next/router';
+import Router from 'next/router'
 import ArticleForm from './form/ArticleForm'
 
 class ArticleUpdate extends Component {
@@ -37,10 +38,22 @@ class ArticleUpdate extends Component {
         this.setState({ [name]: v })
     }
 
+    updateCacheAfterMutation = (store, article) => {
+        console.log('article', article)
+        const data = store.readQuery({ query: ARTICLES_QUERY })
+        const cachedArticle = data.articles.find(a => a.id === article.id)
+        Object.keys(article).forEach(p => cachedArticle[p] = article[p])
+        console.log('cachedArticle', cachedArticle)
+    }
+
     render() {
-        // console.log('state : ', this.state)
+        const { update } = this.props
         return (
-            <Mutation mutation={ARTICLE_UPDATE_MUTATION} variables={this.state}>
+            <Mutation 
+                mutation={ARTICLE_UPDATE_MUTATION} 
+                variables={this.state}
+                update={(store, { data: { updateArticle } }) => update(store, updateArticle)}
+            >
             {(updateArticle, { data, error, loading }) => {
                 return (
                     <ArticleForm
@@ -59,6 +72,8 @@ class ArticleUpdate extends Component {
 }
 
 ArticleUpdate.propTypes = {
-    article: PropTypes.object.isRequired
+    article: PropTypes.object.isRequired,
+    update: PropTypes.func.isRequired,
 }
+
 export default ArticleUpdate

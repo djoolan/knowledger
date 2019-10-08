@@ -36,6 +36,17 @@ const ARTICLE_UPDATE_MUTATION = gql`
         )
          {
             id
+            title
+            uri
+            summary
+            takeaway
+            source
+            author
+            image
+            tags {
+                id
+                label
+            }
         }
     }
 `
