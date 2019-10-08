@@ -14,6 +14,7 @@ class ArticleUpdate extends Component {
         source: this.props.article.source || '',
         author: this.props.article.author || '',
         tagsArray: this.props.article.tags || [],
+        tags: this.props.article.tags.map(v => v.label).join(','),
         // ...this.props.article,
     }
     
@@ -30,6 +31,7 @@ class ArticleUpdate extends Component {
         console.log('ArticleUpdate : handleChange', e)
         console.log('state', this.state)
         console.log('tags', this.state.tags)
+        console.log('tagsArray', this.state.tagsArray)
         const { name, type, value } = e.target
         const v = type === 'number' ? parseFloat(value) : value
         this.setState({ [name]: v })

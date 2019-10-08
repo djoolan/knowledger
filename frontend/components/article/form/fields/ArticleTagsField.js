@@ -18,7 +18,9 @@ class ArticleTagsField extends Component {
                     if (loading) return <p>Loading</p>
                     if (error) return <p>Error : { error.message }</p>
                     const options = data.tags.map(tag => ({ value: tag.label, label: tag.label }))
-                    const defaultValue = options.filter(tag => value.map(v => v.label).includes(tag.label))
+                    const defaultValue = value
+                        ? options.filter(tag => value.map(v => v.label).includes(tag.label))
+                        : null
                     return (
                         <CreatableSelect
                             name={name}

@@ -15,6 +15,9 @@ const Navbar = () => (
         <Link href="/tags">
             <a>Tags</a>
         </Link>
+        <Link href="/import">
+            <a>Import</a>
+        </Link>
         {/* <Link href="/orders">
             <a>Commandes</a>
         </Link> */}

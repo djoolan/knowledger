@@ -24,6 +24,13 @@ class ArticleStub extends Component {
                         <a>{ article.title }</a>
                     </Link> */}
                 </StyledArticleStubTitle>
+                {
+                    article.tags
+                        ? <p>{article.tags.map((tag, index) => (
+                            <span key={index} className="tag">{tag.label}</span>
+                        ))}</p>
+                        : null
+                }
                 <a className="directLink" href={article.uri}>Lien ></a>
                 <p>
                     <span className="author">{ article.author }</span> in <span className="source">{ article.source }</span>

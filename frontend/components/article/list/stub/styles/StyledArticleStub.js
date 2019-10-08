@@ -32,6 +32,18 @@ const StyledArticleStub = styled.li`
         /* flex-grow: 1; */
         margin: 0;
     }
+    .tag {
+        font-size: 8px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        line-height: 1.3;
+        padding: 2px 4px;
+        border-radius: 2px;
+        background: #fff;
+        color: #999;
+        border: 1px solid #999;
+        margin-right: 2px;
+    }
     .actionButtons {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
