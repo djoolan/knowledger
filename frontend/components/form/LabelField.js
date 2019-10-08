@@ -5,7 +5,7 @@ class LabelField extends Component {
     render() {
         const { name, label, children } = this.props
         return (
-            <label htmlFor={name}>
+            <label className={name} htmlFor={name}>
                 {label}
                 {children}
             </label>

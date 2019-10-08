@@ -76,6 +76,12 @@ async function updateArticle(parent, args, ctx, info) {
     return article
 }
 
+async function deleteArticle(parent, args, ctx, info) {
+    const { id } = args
+    const article = await ctx.db.mutation.deleteArticle({ where: { id } }, info)
+    return article
+}
+
 async function importArticles(parent, args, ctx, info) {
     const { json } = args
     const jsonParsed = JSON.parse(json)
@@ -92,4 +98,5 @@ module.exports = {
     createArticle,
     updateArticle,
     importArticles,
+    deleteArticle,
 }

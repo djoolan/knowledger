@@ -15,7 +15,7 @@ class TagStub extends Component {
             <StyledTagStub>
                 <StyledTagStubTitle>
                     <Link href="/tag/[id]" as={`/tag/${tag.id}`}>
-                        <a>{tag.label}</a>
+                        <a>:{tag.label}</a>
                     </Link>
                 </StyledTagStubTitle>
             </StyledTagStub>

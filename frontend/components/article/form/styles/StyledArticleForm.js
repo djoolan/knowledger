@@ -13,12 +13,16 @@ const StyledArticleForm = styled.form`
     font-weight: bold;
     margin: 0 auto;
     /* box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.08); */
-    fieldset {
+    fieldset, div[role=group] {
         border: 0;
         margin: 0;
         &[disabled] {
             opacity: 0.3;
         }
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
     }
     input,
     textarea,
@@ -36,6 +40,17 @@ const StyledArticleForm = styled.form`
             border-color: black;
         }
     }
+    input {
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px dotted ${props => props.theme.primary};
+        padding-left: 0;
+        padding-right: 0;
+        font-size: 24px;
+        &::placeholder {
+            color: #eee;
+        }
+    }
     textarea {
         line-height: 1.3;
     }
@@ -47,8 +62,22 @@ const StyledArticleForm = styled.form`
     label {
         display: block;
         width: 100%;
-        margin-bottom: 1.3rem;
-        font-size: 1.8rem;
+        margin-bottom: 20px;
+        font-size: 16px;
+        font-weight: normal;
+        color: ${props => props.theme.primary};
+        input {
+            margin-top: -6px;
+        }
+        .select {
+            margin-top: 4px;
+        }
+    }
+    .author, .source {
+        width: 49%;
+    }
+    .author {
+        margin-right: 2%;
     }
     button,
     input[type="submit"] {
@@ -63,6 +92,17 @@ const StyledArticleForm = styled.form`
         width: 100%;
         &:hover {
             opacity: 0.7;
+        }
+    }
+    &.delete {
+        div[role=group] {
+            flex-direction: row-reverse;
+        }
+        button {
+            padding-left: 10px;
+            padding-right: 10px;
+            background: red;
+            width: auto;
         }
     }
     span.free {

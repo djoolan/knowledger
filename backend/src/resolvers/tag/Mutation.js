@@ -26,7 +26,14 @@ async function updateTag(parent, args, ctx, info) {
     return tag
 }
 
+async function deleteTag(parent, args, ctx, info) {
+    const { id } = args
+    const tag = await ctx.db.mutation.deleteTag({ where: { id } }, info)
+    return tag
+}
+
 module.exports = {
     createTag,
     updateTag,
+    deleteTag,
 }

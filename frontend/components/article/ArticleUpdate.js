@@ -37,11 +37,6 @@ class ArticleUpdate extends Component {
         this.setState({ [name]: v })
     }
 
-    prepareParams = (...args) => {
-        console.log('prepareParams', args)
-        return args[0]
-    }
-
     render() {
         // console.log('state : ', this.state)
         return (
@@ -54,34 +49,9 @@ class ArticleUpdate extends Component {
                         state={this.state}
                         handleChange={this.handleChange}
                         formAction={updateArticle}
-                        // formAction={this.prepareParams(updateArticle)}
                         submitLabel="Update"
                     />
                 )
-                // return (<StyledArticleUpdateForm
-                //     disabled={loading}
-                //     aria-busy={loading}
-                //     onSubmit={async e => { 
-                //         e.preventDefault()
-                //         console.log('ArticleUpdate: this.state', this.state)
-                //         const response = await updateArticle();
-                //         console.log(response)
-                //         // Router.push({
-                //         //     pathname: '/article',
-                //         //     query: { id: response.data.updateArticle.id }
-                //         // })
-                //     }}>
-                //     <Error error={error}/>
-                //     <fieldset>
-                //         <ArticleTitleField value={this.state.title} handleChange={this.handleChange} />
-                //         <ArticleUriField value={this.state.uri} handleChange={this.handleChange} />
-                //         <ArticleAuthorField value={this.state.author} handleChange={this.handleChange} />
-                //         <ArticleSourceField value={this.state.source} handleChange={this.handleChange} />
-                //         <ArticleTagsField value={this.state.tags} handleChange={this.handleChange} />
-                //         <ArticleSummaryField value={this.state.summary} handleChange={this.handleChange} />
-                //         <button type="submit"> Update </button>
-                //     </fieldset>
-                // </StyledArticleUpdateForm>)
             }}
             </Mutation>
         )

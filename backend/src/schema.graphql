@@ -27,6 +27,10 @@ type Mutation {
         tags: String
     ): Article!   
     
+    deleteArticle(
+        id: ID!
+    ): Article
+
     createTag(
         label: String!
     ): Tag!
@@ -35,6 +39,10 @@ type Mutation {
         id: ID!
         label: String!
     ): Tag!
+
+    deleteTag(
+        id: ID!
+    ): Tag
 }
 
 type Query {

@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import ArticleUpdate from './ArticleUpdate';
+import React, { Component, Fragment } from 'react'
+import { withRouter } from 'next/router'
 import { Query } from 'react-apollo'
 import ARTICLE_QUERY from '../../queries/ARTICLE_QUERY'
-import { withRouter } from 'next/router'
+import ArticleUpdate from './ArticleUpdate'
+import ArticleDelete from './ArticleDelete'
 
 function Article({ router }) {
     const { id } = router.query
@@ -13,7 +14,10 @@ function Article({ router }) {
                 if (error) return <p>Error : { error.message }</p>
                 const { article } = data
                 return (
-                    <ArticleUpdate article={article} />
+                    <Fragment>
+                        <ArticleDelete article={article} />
+                        <ArticleUpdate article={article} />
+                    </Fragment>
                 )
             }} 
         </Query>

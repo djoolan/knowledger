@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types'
-import StyledTagUpdateForm from '../update/styles/StyledTagUpdateForm'
+import StyledTagForm from './styles/StyledTagForm'
 import { Mutation } from 'react-apollo';
-import TAG_UPDATE_MUTATION from '../../../queries/TAG_UPDATE_MUTATION';
-import Error from '../../Error'
+import TAG_UPDATE_MUTATION from '../../queries/TAG_UPDATE_MUTATION';
+import Error from '../Error'
 
 class TagUpdate extends Component {
     state = {
@@ -22,7 +22,7 @@ class TagUpdate extends Component {
         return (
             <Mutation mutation={TAG_UPDATE_MUTATION} variables={this.state}>
             {(updateTag, { data, error, loading }) => {
-                return (<StyledTagUpdateForm
+                return (<StyledTagForm
                     disabled={loading}
                     aria-busy={loading}
                     onSubmit={async e => { 
@@ -48,7 +48,7 @@ class TagUpdate extends Component {
 
                         <button type="submit"> Update </button>
                     </fieldset>
-                </StyledTagUpdateForm>)
+                </StyledTagForm>)
             }}
             </Mutation>
         )

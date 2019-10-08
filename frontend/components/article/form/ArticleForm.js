@@ -27,15 +27,17 @@ class ArticleForm extends Component {
                     // })
                 }}>
                 <Error error={error}/>
-                <fieldset>
-                    <ArticleTitleField value={state.title} handleChange={handleChange} />
-                    <ArticleUriField value={state.uri} handleChange={handleChange} />
-                    <ArticleAuthorField value={state.author} handleChange={handleChange} />
-                    <ArticleSourceField value={state.source} handleChange={handleChange} />
-                    <ArticleTagsField value={state.tagsArray} handleChange={handleChange} />
-                    <ArticleSummaryField value={state.summary} handleChange={handleChange} />
+                {/* <fieldset> */}
+                <div role="group">
+                    <ArticleTitleField className="title" value={state.title} handleChange={handleChange} />
+                    <ArticleUriField className="uri" value={state.uri} handleChange={handleChange} />
+                    <ArticleTagsField className="tags" value={state.tagsArray} handleChange={handleChange} />
+                    <ArticleAuthorField className="author" value={state.author} handleChange={handleChange} />
+                    <ArticleSourceField className="source" value={state.source} handleChange={handleChange} />
+                    <ArticleSummaryField className="summary" value={state.summary} handleChange={handleChange} />
                     <button type="submit"> {submitLabel} </button>
-                </fieldset>
+                </div>
+                {/* </fieldset> */}
             </StyledArticleForm>
         )
     }

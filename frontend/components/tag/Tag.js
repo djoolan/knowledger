@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import TagUpdate from './update/TagUpdate';
+import React, { Component, Fragment } from 'react';
 import { Query } from 'react-apollo'
 import TAG_QUERY from '../../queries/TAG_QUERY'
 import { withRouter } from 'next/router'
+import TagDelete from './TagDelete';
+import TagUpdate from './TagUpdate';
 
 function Page({ router }) {
   return <p>{router.pathname}</p>
@@ -17,7 +18,10 @@ function Tag({ router }) {
                 if (error) return <p>Error : { error.message }</p>
                 const { tag } = data
                 return (
-                    <TagUpdate tag={tag} />
+                    <Fragment>
+                        <TagDelete tag={tag} />
+                        <TagUpdate tag={tag} />
+                    </Fragment>
                 )
             }} 
         </Query>

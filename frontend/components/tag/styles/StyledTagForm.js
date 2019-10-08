@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledTagUpdateForm = styled.form`
+const StyledTagForm = styled.form`
     /* background: #FFC107; */
     display: flex;
     flex-direction: column;
@@ -67,4 +67,4 @@ const StyledTagUpdateForm = styled.form`
         color: #795548;
     }
 `
-export default StyledTagUpdateForm
+export default StyledTagForm
