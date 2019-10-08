@@ -1,4 +1,4 @@
-import ArticleCreate from "../components/article/create/ArticleCreate";
+import ArticleCreate from "../components/article/ArticleCreate"
 
 const Creation = props => (
     <div>

@@ -5,7 +5,7 @@ import Article from '../../components/article/Article'
 const ArticlePage = () => {
     const router = useRouter()
     const { id } = router.query
-    console.log('ArticlePage', id)
+    // console.log('ArticlePage', id)
 
     return (
         <div>

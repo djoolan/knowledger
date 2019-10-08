@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledArticleCreateForm = styled.form`
+const StyledArticleForm = styled.form`
     /* background: #FFC107; */
     display: flex;
     flex-direction: column;
@@ -39,6 +39,11 @@ const StyledArticleCreateForm = styled.form`
     textarea {
         line-height: 1.3;
     }
+    .select {
+        input {
+            line-height: 1;
+        }
+    }
     label {
         display: block;
         width: 100%;
@@ -67,4 +72,4 @@ const StyledArticleCreateForm = styled.form`
         color: #795548;
     }
 `
-export default StyledArticleCreateForm
+export default StyledArticleForm

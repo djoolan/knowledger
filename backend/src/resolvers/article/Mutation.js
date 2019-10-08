@@ -31,12 +31,15 @@ async function createArticle(parent, args, ctx, info) {
 
 async function updateArticle(parent, args, ctx, info) {
     const { id, tags, ...props } = args
+    const labels = tags.split(',')
+    const tagsFromLabels = await createOrConnectTagsFromLabels(labels, ctx)
     const article = await ctx.db.mutation.updateArticle({
         data: {
-            ...props
+            ...props,
+            tags: tagsFromLabels,
         },
         where: {
-            id
+            id,
         }
     }, info)
     return article
