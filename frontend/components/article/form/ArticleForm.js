@@ -8,11 +8,12 @@ import ArticleUriField from './fields/ArticleUriField'
 import ArticleAuthorField from './fields/ArticleAuthorField'
 import ArticleSourceField from './fields/ArticleSourceField'
 import ArticleTagsField from './fields/ArticleTagsField'
+import ArticleCategoriesField from './fields/ArticleCategoriesField'
 import ArticleSummaryField from './fields/ArticleSummaryField'
 
 class ArticleForm extends Component {
     render() {
-        const { loading, error, state, handleChange, formAction, submitLabel } = this.props
+        const { loading, error, state, handleChange, handleChangeTags, handleChangeCategories, formAction, submitLabel } = this.props
         return (
             <StyledArticleForm
                 disabled={loading}
@@ -31,7 +32,8 @@ class ArticleForm extends Component {
                 <div role="group">
                     <ArticleTitleField className="title" value={state.title} handleChange={handleChange} />
                     <ArticleUriField className="uri" value={state.uri} handleChange={handleChange} />
-                    <ArticleTagsField className="tags" value={state.tagsArray} handleChange={handleChange} />
+                    <ArticleTagsField className="tags" value={state.tagsArray} handleChange={handleChangeTags} />
+                    <ArticleCategoriesField className="categories" value={state.categoriesArray} handleChange={handleChangeCategories} />
                     <ArticleAuthorField className="author" value={state.author} handleChange={handleChange} />
                     <ArticleSourceField className="source" value={state.source} handleChange={handleChange} />
                     <ArticleSummaryField className="summary" value={state.summary} handleChange={handleChange} />
@@ -46,6 +48,8 @@ class ArticleForm extends Component {
 ArticleForm.propTypes = {
     state: PropTypes.object.isRequired,
     handleChange: PropTypes.func.isRequired,
+    handleChangeTags: PropTypes.func.isRequired,
+    handleChangeCategories: PropTypes.func.isRequired,
     formAction: PropTypes.func.isRequired,
     submitLabel: PropTypes.string.isRequired,
     loading: PropTypes.bool,

@@ -15,20 +15,41 @@ class ArticleUpdate extends Component {
         source: this.props.article.source || '',
         author: this.props.article.author || '',
         tagsArray: this.props.article.tags || [],
-        tags: this.props.article.tags.map(v => v.label).join(','),
+        tags: this.props.article.tags ? this.props.article.tags.map(v => v.label).join(',') : '',
+        categoriesArray: this.props.article.categories || [],
+        categories: this.props.article.categories ? this.props.article.categories.map(v => v.label).join(',') : '',
         // ...this.props.article,
     }
     
-    handleTagsChanged = (newValue, actionMeta) => {
-        this.setState({ tags: newValue.map(v => v.label).join(',') })
-        this.setState({ tagsArray: newValue })
-    }
-
-    handleChange = (e, actionMeta) => {
-        if (actionMeta) {
-            this.handleTagsChanged(e, actionMeta)
+    handleChangeTags = (newValue, actionMeta) => {
+        if (newValue) {
+            this.setState({ 
+                tags: newValue.map(v => v.label).join(','),
+                tagsArray: newValue,
+            })
             return
         }
+        this.setState({ 
+            tags: '', 
+            tagsArray: []
+        })
+    }
+
+    handleChangeCategories = (newValue, actionMeta) => {
+        if (newValue) {
+            this.setState({ 
+                categories: newValue.map(v => v.label).join(','),
+                categoriesArray: newValue,
+            })
+            return
+        }
+        this.setState({ 
+            categories: '', 
+            categories: []
+        })
+    }
+
+    handleChange = e => {
         console.log('ArticleUpdate : handleChange', e)
         console.log('state', this.state)
         console.log('tags', this.state.tags)
@@ -61,6 +82,8 @@ class ArticleUpdate extends Component {
                         error={error}
                         state={this.state}
                         handleChange={this.handleChange}
+                        handleChangeTags={this.handleChangeTags}
+                        handleChangeCategories={this.handleChangeCategories}
                         formAction={updateArticle}
                         submitLabel="Update"
                     />

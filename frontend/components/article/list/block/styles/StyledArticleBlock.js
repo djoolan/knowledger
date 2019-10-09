@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledArticleStub = styled.li`
+const StyledArticleBlock = styled.li`
     background: white;
     display: flex;
     flex-direction: column;
@@ -32,7 +32,7 @@ const StyledArticleStub = styled.li`
         /* flex-grow: 1; */
         margin: 0;
     }
-    .tag {
+    .tag, .category {
         font-size: 8px;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
@@ -43,6 +43,21 @@ const StyledArticleStub = styled.li`
         color: #999;
         border: 1px solid #999;
         margin-right: 2px;
+    }
+    .category {
+        display: inline-block;
+        font-size: 8px;
+        text-transform: uppercase;
+        letter-spacing: 4;
+        font-weight: 300;
+        line-height: 1.3;
+        margin-bottom: 5px;
+        padding: 0;
+        border-radius: 0;
+        background: transparent;
+        color: #666;
+        border: none;
+        margin-right: 10px;
     }
     .actionButtons {
         display: grid;
@@ -60,4 +75,4 @@ const StyledArticleStub = styled.li`
         }
     }
 `
-export default StyledArticleStub
+export default StyledArticleBlock

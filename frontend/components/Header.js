@@ -24,7 +24,7 @@ const Header = () => (
         <div className="navbar">
             <StyledTitle>
                 <Link href="/">
-                    <a>KnowLedger</a>
+                    <a><span className="stabilo">Know</span>Ledger</a>
                 </Link>
             </StyledTitle>
             <Navbar />

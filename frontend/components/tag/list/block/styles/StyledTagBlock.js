@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledTagStub = styled.li`
+const StyledTagBlock = styled.li`
     background: white;
     display: flex;
     flex-direction: column;
@@ -48,4 +48,4 @@ const StyledTagStub = styled.li`
         }
     }
 `
-export default StyledTagStub
+export default StyledTagBlock

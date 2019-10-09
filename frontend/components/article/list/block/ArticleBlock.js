@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link'
-import StyledArticleStub from './styles/StyledArticleStub';
-import StyledArticleStubTitle from './styles/StyledArticleStubTitle';
+import StyledArticleBlock from './styles/StyledArticleBlock';
+import StyledArticleBlockTitle from './styles/StyledArticleBlockTitle';
 
 const propTypes = {
     article: PropTypes.object.isRequired
 }
 
-class ArticleStub extends Component {
+class ArticleBlock extends Component {
     render() {
         const { article } = this.props 
+        // console.log('article', article)
         return (
-            <StyledArticleStub>
-                <StyledArticleStubTitle>
+            <StyledArticleBlock>
+                {
+                    article.categories
+                        ? <p>{article.categories.map((category, index) => (
+                            <span key={index} className="category">{category.label}</span>
+                        ))}</p>
+                        : null
+                }
+                <StyledArticleBlockTitle>
                     <Link href="/article/[id]" as={`/article/${article.id}`}>
                         <a>{article.title}</a>
                     </Link>
@@ -23,7 +31,7 @@ class ArticleStub extends Component {
                     }}>
                         <a>{ article.title }</a>
                     </Link> */}
-                </StyledArticleStubTitle>
+                </StyledArticleBlockTitle>
                 {
                     article.tags
                         ? <p>{article.tags.map((tag, index) => (
@@ -31,7 +39,9 @@ class ArticleStub extends Component {
                         ))}</p>
                         : null
                 }
-                <a className="directLink" href={article.uri}>Lien ></a>
+                <a className="directLink" target="blank" href={article.uri}>
+                    <i className="fas fa-external-link-alt"></i>
+                </a>
                 <p>
                     <span className="author">{ article.author }</span> in <span className="source">{ article.source }</span>
                 </p>
@@ -45,11 +55,11 @@ class ArticleStub extends Component {
                         <a>Remove</a>
                     </Link>
                 </div> */}
-            </StyledArticleStub>
+            </StyledArticleBlock>
         )
     }
 }
 
-ArticleStub.propTypes = propTypes;
+ArticleBlock.propTypes = propTypes;
 
-export default ArticleStub;
+export default ArticleBlock;

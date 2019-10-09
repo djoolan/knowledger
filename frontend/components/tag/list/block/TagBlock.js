@@ -1,28 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link'
-import StyledTagStub from './styles/StyledTagStub';
-import StyledTagStubTitle from './styles/StyledTagStubTitle';
+import StyledTagBlock from './styles/StyledTagBlock';
+import StyledTagBlockTitle from './styles/StyledTagBlockTitle';
 
 const propTypes = {
     tag: PropTypes.object.isRequired
 }
 
-class TagStub extends Component {
+class TagBlock extends Component {
     render() {
         const { tag } = this.props 
         return (
-            <StyledTagStub>
-                <StyledTagStubTitle>
+            <StyledTagBlock>
+                <StyledTagBlockTitle>
                     <Link href="/tag/[id]" as={`/tag/${tag.id}`}>
                         <a>{tag.label}</a>
                     </Link>
-                </StyledTagStubTitle>
-            </StyledTagStub>
+                </StyledTagBlockTitle>
+            </StyledTagBlock>
         )
     }
 }
 
-TagStub.propTypes = propTypes;
+TagBlock.propTypes = propTypes;
 
-export default TagStub;
+export default TagBlock;

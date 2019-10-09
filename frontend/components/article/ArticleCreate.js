@@ -18,19 +18,39 @@ class ArticleCreate extends Component {
         tagsArray: [],
     }
     
-    handleTagsChanged = (newValue, actionMeta) => {
-        this.setState({ tags: newValue.map(v => v.label).join(',') })
-        this.setState({ tagsArray: newValue })
-    }
-
-    handleChange = (e, actionMeta) => {
-        if (actionMeta) {
-            this.handleTagsChanged(e, actionMeta)
+    handleChangeTags = (newValue, actionMeta) => {
+        if (newValue) {
+            this.setState({ 
+                tags: newValue.map(v => v.label).join(','),
+                tagsArray: newValue,
+            })
             return
         }
+        this.setState({ 
+            tags: '', 
+            tagsArray: []
+        })
+    }
+
+    handleChangeCategories = (newValue, actionMeta) => {
+        if (newValue) {
+            this.setState({ 
+                categories: newValue.map(v => v.label).join(','),
+                categoriesArray: newValue,
+            })
+            return
+        }
+        this.setState({ 
+            categories: '', 
+            categories: []
+        })
+    }
+
+    handleChange = e => {
         console.log('ArticleCreate: handleChange', e)
         console.log('state', this.state)
         console.log('tags', this.state.tags)
+        console.log('categories', this.state.categories)
         const { name, type, value } = e.target
         const v = type === 'number' ? parseFloat(value) : value
         this.setState({ [name]: v })
@@ -53,6 +73,8 @@ class ArticleCreate extends Component {
                         error={error}
                         state={this.state}
                         handleChange={this.handleChange}
+                        handleChangeTags={this.handleChangeTags}
+                        handleChangeCategories={this.handleChangeCategories}
                         formAction={createArticle}
                         submitLabel="Create"
                     />

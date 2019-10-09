@@ -17,6 +17,10 @@ const ARTICLES_QUERY = gql`
                 id
                 label
             }
+            categories {
+                id
+                label
+            }
         }
     }
 `

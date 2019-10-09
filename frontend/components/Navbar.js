@@ -9,15 +9,21 @@ const Navbar = () => (
         <Link href="/article/create">
             <a>New</a>
         </Link>
-        <Link href="/articles">
+        {/* <Link href="/articles/[page]" as="/articles/1">
+            <a>Articles</a>
+        </Link> */}
+        <Link href="/articles/[page]" as='/articles/1'>
             <a>Articles</a>
         </Link>
         <Link href="/tags">
             <a>Tags</a>
         </Link>
-        <Link href="/import">
-            <a>Import</a>
+        <Link href="/categories">
+            <a>Categories</a>
         </Link>
+        {/* <Link href="/import">
+            <a>Import</a>
+        </Link> */}
         {/* <Link href="/orders">
             <a>Commandes</a>
         </Link> */}

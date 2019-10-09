@@ -13,7 +13,6 @@ async function getArticleTagRelationsFromLabels(articleId, labels, ctx) {
     const tags = {
         create: [],
         connect: [],
-        disconnect: [],
     }
     console.log('getArticleTagRelationsFromLabels: articleId', articleId)
     // let t = new Date()
@@ -25,7 +24,9 @@ async function getArticleTagRelationsFromLabels(articleId, labels, ctx) {
         if (!label) {
             return
         }
-        tags.disconnect = tags.disconnect.filter(tag => tag.label !== label)
+        if (tags.disconnect) {
+            tags.disconnect = tags.disconnect.filter(tag => tag.label !== label)
+        }
         const tagExists = await ctx.prisma.$exists.tag({ label })
         if (tagExists) {
             tags.connect.push({ label })
@@ -37,6 +38,46 @@ async function getArticleTagRelationsFromLabels(articleId, labels, ctx) {
     return { tags }
 }
 
+async function getArticleCategoryRelations(articleId, categories, ctx) {
+    console.log('getArticleCategoryRelations', {articleId, categories})
+    if (!categories) {
+        return
+    }
+    const categoryLabels = typeof categories === 'string'
+        ? categories.split(',')
+        : categories.map(t => t.label)
+    return getArticleCategoryRelationsFromLabels(articleId, categoryLabels, ctx)
+}
+
+async function getArticleCategoryRelationsFromLabels(articleId, labels, ctx) {
+    const categories = {
+        create: [],
+        connect: [],
+    }
+    console.log('getArticleCategoryRelationsFromLabels: articleId', articleId)
+    // let t = new Date()
+    // tags.disconnect = (await ctx.prisma.tags()).map(tag => tag.label)
+    if (articleId) {
+        categories.disconnect = (await ctx.prisma.article({ id: articleId }).categories()).map(c => ({ label: c.label }))
+    }
+    await Promise.all(labels.map(async label => {
+        if (!label) {
+            return
+        }
+        if (categories.disconnect) {
+            categories.disconnect = categories.disconnect.filter(c => c.label !== label)
+        }
+        const categoryExists = await ctx.prisma.$exists.category({ label })
+        if (categoryExists) {
+            categories.connect.push({ label })
+            return
+        }
+        categories.create.push({ label })
+    }))
+    console.log('final categories : ', categories)
+    return { categories }
+}
+
 function normalizeArticleData(args) {
     const { __id, __typename, ...props } = args
     return props
@@ -46,10 +87,11 @@ function normalizeArticleData(args) {
 
 async function createArticle(parent, args, ctx, info) {
     console.log('createArticle')
-    const { tags, ...props } = args
+    const { tags, categories, ...props } = args
     const data = {
         ...normalizeArticleData(props),
-        ...await getArticleTagRelations(null, tags, ctx)
+        ...await getArticleTagRelations(null, tags, ctx),
+        ...await getArticleCategoryRelations(null, categories, ctx),
     }
     console.log('data', data)
     const article = await ctx.db.mutation.createArticle({ data }, info)
@@ -57,8 +99,7 @@ async function createArticle(parent, args, ctx, info) {
 }
 
 async function updateArticle(parent, args, ctx, info) {
-    console.log('args', args)
-    const { id, tags, ...props } = args
+    const { id, tags, categories, ...props } = args
     const currentArticle = await ctx.prisma.article({ id })
     if (!currentArticle) {
         throw `Article not found for id #${id}`
@@ -66,9 +107,9 @@ async function updateArticle(parent, args, ctx, info) {
     console.log('updateArticle : currentArticle', currentArticle)
     const data = {
         ...normalizeArticleData(props),
-        ...await getArticleTagRelations(id, tags, ctx)
+        ...await getArticleTagRelations(id, tags, ctx),
+        ...await getArticleCategoryRelations(id, categories, ctx),
     }
-    console.log('data.tags', data.tags)
     const article = await ctx.db.mutation.updateArticle(
         { data, where: { id } }, 
         info,

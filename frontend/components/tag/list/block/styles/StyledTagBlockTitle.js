@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledTagStubTitle = styled.div`
+const StyledTagBlockTitle = styled.div`
     text-align: left;
     a {
         color: ${props => props.theme.primary};
@@ -10,4 +10,4 @@ const StyledTagStubTitle = styled.div`
     }
 `
 
-export default StyledTagStubTitle
+export default StyledTagBlockTitle

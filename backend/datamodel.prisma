@@ -15,11 +15,18 @@ type Article {
   author: String
   image: String
   tags: [Tag!]!
+  categories: [Category!]!
   createdAt: DateTime! @createdAt
   updatedAt: DateTime! @updatedAt
 }
 
 type Tag {
+  id: ID! @id
+  label: String! @unique
+  articles: [Article!]!
+}
+
+type Category {
   id: ID! @id
   label: String! @unique
   articles: [Article!]!

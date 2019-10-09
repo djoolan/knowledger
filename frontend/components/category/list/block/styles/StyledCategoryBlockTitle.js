@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledArticleStubTitle = styled.div`
+const StyledCategoryBlockTitle = styled.div`
     text-align: left;
     a {
         color: ${props => props.theme.primary};
@@ -10,4 +10,4 @@ const StyledArticleStubTitle = styled.div`
     }
 `
 
-export default StyledArticleStubTitle
+export default StyledCategoryBlockTitle

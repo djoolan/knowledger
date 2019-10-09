@@ -1,7 +1,11 @@
-# source: https://eu1.prisma.sh/jlondeix-d3f388/thibault6000/dev
-# timestamp: Mon Oct 07 2019 10:42:20 GMT+0200 (CEST)
+# source: https://eu1.prisma.sh/jlondeix-d3f388/knowledger/dev
+# timestamp: Tue Oct 08 2019 17:09:47 GMT+0200 (CEST)
 
 type AggregateArticle {
+  count: Int!
+}
+
+type AggregateCategory {
   count: Int!
 }
 
@@ -23,6 +27,7 @@ type Article implements Node {
   author: String
   image: String
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -47,11 +52,29 @@ input ArticleCreateInput {
   author: String
   image: String
   tags: TagCreateManyWithoutArticlesInput
+  categories: CategoryCreateManyWithoutArticlesInput
+}
+
+input ArticleCreateManyWithoutCategoriesInput {
+  create: [ArticleCreateWithoutCategoriesInput!]
+  connect: [ArticleWhereUniqueInput!]
 }
 
 input ArticleCreateManyWithoutTagsInput {
   create: [ArticleCreateWithoutTagsInput!]
   connect: [ArticleWhereUniqueInput!]
+}
+
+input ArticleCreateWithoutCategoriesInput {
+  id: ID
+  title: String!
+  uri: String
+  summary: String
+  takeaway: String
+  source: String
+  author: String
+  image: String
+  tags: TagCreateManyWithoutArticlesInput
 }
 
 input ArticleCreateWithoutTagsInput {
@@ -63,6 +86,7 @@ input ArticleCreateWithoutTagsInput {
   source: String
   author: String
   image: String
+  categories: CategoryCreateManyWithoutArticlesInput
 }
 
 """An edge in a connection."""
@@ -531,6 +555,7 @@ input ArticleUpdateInput {
   author: String
   image: String
   tags: TagUpdateManyWithoutArticlesInput
+  categories: CategoryUpdateManyWithoutArticlesInput
 }
 
 input ArticleUpdateManyDataInput {
@@ -553,6 +578,18 @@ input ArticleUpdateManyMutationInput {
   image: String
 }
 
+input ArticleUpdateManyWithoutCategoriesInput {
+  create: [ArticleCreateWithoutCategoriesInput!]
+  connect: [ArticleWhereUniqueInput!]
+  set: [ArticleWhereUniqueInput!]
+  disconnect: [ArticleWhereUniqueInput!]
+  delete: [ArticleWhereUniqueInput!]
+  update: [ArticleUpdateWithWhereUniqueWithoutCategoriesInput!]
+  updateMany: [ArticleUpdateManyWithWhereNestedInput!]
+  deleteMany: [ArticleScalarWhereInput!]
+  upsert: [ArticleUpsertWithWhereUniqueWithoutCategoriesInput!]
+}
+
 input ArticleUpdateManyWithoutTagsInput {
   create: [ArticleCreateWithoutTagsInput!]
   connect: [ArticleWhereUniqueInput!]
@@ -570,6 +607,17 @@ input ArticleUpdateManyWithWhereNestedInput {
   data: ArticleUpdateManyDataInput!
 }
 
+input ArticleUpdateWithoutCategoriesDataInput {
+  title: String
+  uri: String
+  summary: String
+  takeaway: String
+  source: String
+  author: String
+  image: String
+  tags: TagUpdateManyWithoutArticlesInput
+}
+
 input ArticleUpdateWithoutTagsDataInput {
   title: String
   uri: String
@@ -578,11 +626,23 @@ input ArticleUpdateWithoutTagsDataInput {
   source: String
   author: String
   image: String
+  categories: CategoryUpdateManyWithoutArticlesInput
+}
+
+input ArticleUpdateWithWhereUniqueWithoutCategoriesInput {
+  where: ArticleWhereUniqueInput!
+  data: ArticleUpdateWithoutCategoriesDataInput!
 }
 
 input ArticleUpdateWithWhereUniqueWithoutTagsInput {
   where: ArticleWhereUniqueInput!
   data: ArticleUpdateWithoutTagsDataInput!
+}
+
+input ArticleUpsertWithWhereUniqueWithoutCategoriesInput {
+  where: ArticleWhereUniqueInput!
+  update: ArticleUpdateWithoutCategoriesDataInput!
+  create: ArticleCreateWithoutCategoriesInput!
 }
 
 input ArticleUpsertWithWhereUniqueWithoutTagsInput {
@@ -967,6 +1027,9 @@ input ArticleWhereInput {
   tags_every: TagWhereInput
   tags_some: TagWhereInput
   tags_none: TagWhereInput
+  categories_every: CategoryWhereInput
+  categories_some: CategoryWhereInput
+  categories_none: CategoryWhereInput
 }
 
 input ArticleWhereUniqueInput {
@@ -976,6 +1039,331 @@ input ArticleWhereUniqueInput {
 type BatchPayload {
   """The number of nodes that have been affected by the Batch operation."""
   count: Long!
+}
+
+type Category implements Node {
+  id: ID!
+  label: String!
+  articles(where: ArticleWhereInput, orderBy: ArticleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Article!]
+}
+
+"""A connection to a list of items."""
+type CategoryConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [CategoryEdge]!
+  aggregate: AggregateCategory!
+}
+
+input CategoryCreateInput {
+  id: ID
+  label: String!
+  articles: ArticleCreateManyWithoutCategoriesInput
+}
+
+input CategoryCreateManyWithoutArticlesInput {
+  create: [CategoryCreateWithoutArticlesInput!]
+  connect: [CategoryWhereUniqueInput!]
+}
+
+input CategoryCreateWithoutArticlesInput {
+  id: ID
+  label: String!
+}
+
+"""An edge in a connection."""
+type CategoryEdge {
+  """The item at the end of the edge."""
+  node: Category!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum CategoryOrderByInput {
+  id_ASC
+  id_DESC
+  label_ASC
+  label_DESC
+}
+
+type CategoryPreviousValues {
+  id: ID!
+  label: String!
+}
+
+input CategoryScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CategoryScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CategoryScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CategoryScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  label: String
+
+  """All values that are not equal to given value."""
+  label_not: String
+
+  """All values that are contained in given list."""
+  label_in: [String!]
+
+  """All values that are not contained in given list."""
+  label_not_in: [String!]
+
+  """All values less than the given value."""
+  label_lt: String
+
+  """All values less than or equal the given value."""
+  label_lte: String
+
+  """All values greater than the given value."""
+  label_gt: String
+
+  """All values greater than or equal the given value."""
+  label_gte: String
+
+  """All values containing the given string."""
+  label_contains: String
+
+  """All values not containing the given string."""
+  label_not_contains: String
+
+  """All values starting with the given string."""
+  label_starts_with: String
+
+  """All values not starting with the given string."""
+  label_not_starts_with: String
+
+  """All values ending with the given string."""
+  label_ends_with: String
+
+  """All values not ending with the given string."""
+  label_not_ends_with: String
+}
+
+type CategorySubscriptionPayload {
+  mutation: MutationType!
+  node: Category
+  updatedFields: [String!]
+  previousValues: CategoryPreviousValues
+}
+
+input CategorySubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CategorySubscriptionWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CategorySubscriptionWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CategorySubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: CategoryWhereInput
+}
+
+input CategoryUpdateInput {
+  label: String
+  articles: ArticleUpdateManyWithoutCategoriesInput
+}
+
+input CategoryUpdateManyDataInput {
+  label: String
+}
+
+input CategoryUpdateManyMutationInput {
+  label: String
+}
+
+input CategoryUpdateManyWithoutArticlesInput {
+  create: [CategoryCreateWithoutArticlesInput!]
+  connect: [CategoryWhereUniqueInput!]
+  set: [CategoryWhereUniqueInput!]
+  disconnect: [CategoryWhereUniqueInput!]
+  delete: [CategoryWhereUniqueInput!]
+  update: [CategoryUpdateWithWhereUniqueWithoutArticlesInput!]
+  updateMany: [CategoryUpdateManyWithWhereNestedInput!]
+  deleteMany: [CategoryScalarWhereInput!]
+  upsert: [CategoryUpsertWithWhereUniqueWithoutArticlesInput!]
+}
+
+input CategoryUpdateManyWithWhereNestedInput {
+  where: CategoryScalarWhereInput!
+  data: CategoryUpdateManyDataInput!
+}
+
+input CategoryUpdateWithoutArticlesDataInput {
+  label: String
+}
+
+input CategoryUpdateWithWhereUniqueWithoutArticlesInput {
+  where: CategoryWhereUniqueInput!
+  data: CategoryUpdateWithoutArticlesDataInput!
+}
+
+input CategoryUpsertWithWhereUniqueWithoutArticlesInput {
+  where: CategoryWhereUniqueInput!
+  update: CategoryUpdateWithoutArticlesDataInput!
+  create: CategoryCreateWithoutArticlesInput!
+}
+
+input CategoryWhereInput {
+  """Logical AND on all given filters."""
+  AND: [CategoryWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [CategoryWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [CategoryWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  label: String
+
+  """All values that are not equal to given value."""
+  label_not: String
+
+  """All values that are contained in given list."""
+  label_in: [String!]
+
+  """All values that are not contained in given list."""
+  label_not_in: [String!]
+
+  """All values less than the given value."""
+  label_lt: String
+
+  """All values less than or equal the given value."""
+  label_lte: String
+
+  """All values greater than the given value."""
+  label_gt: String
+
+  """All values greater than or equal the given value."""
+  label_gte: String
+
+  """All values containing the given string."""
+  label_contains: String
+
+  """All values not containing the given string."""
+  label_not_contains: String
+
+  """All values starting with the given string."""
+  label_starts_with: String
+
+  """All values not starting with the given string."""
+  label_not_starts_with: String
+
+  """All values ending with the given string."""
+  label_ends_with: String
+
+  """All values not ending with the given string."""
+  label_not_ends_with: String
+  articles_every: ArticleWhereInput
+  articles_some: ArticleWhereInput
+  articles_none: ArticleWhereInput
+}
+
+input CategoryWhereUniqueInput {
+  id: ID
+  label: String
 }
 
 scalar DateTime
@@ -990,21 +1378,27 @@ type Mutation {
   createUser(data: UserCreateInput!): User!
   createArticle(data: ArticleCreateInput!): Article!
   createTag(data: TagCreateInput!): Tag!
+  createCategory(data: CategoryCreateInput!): Category!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
   updateArticle(data: ArticleUpdateInput!, where: ArticleWhereUniqueInput!): Article
   updateTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
+  updateCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category
   deleteUser(where: UserWhereUniqueInput!): User
   deleteArticle(where: ArticleWhereUniqueInput!): Article
   deleteTag(where: TagWhereUniqueInput!): Tag
+  deleteCategory(where: CategoryWhereUniqueInput!): Category
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertArticle(where: ArticleWhereUniqueInput!, create: ArticleCreateInput!, update: ArticleUpdateInput!): Article!
   upsertTag(where: TagWhereUniqueInput!, create: TagCreateInput!, update: TagUpdateInput!): Tag!
+  upsertCategory(where: CategoryWhereUniqueInput!, create: CategoryCreateInput!, update: CategoryUpdateInput!): Category!
   updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
   updateManyArticles(data: ArticleUpdateManyMutationInput!, where: ArticleWhereInput): BatchPayload!
   updateManyTags(data: TagUpdateManyMutationInput!, where: TagWhereInput): BatchPayload!
+  updateManyCategories(data: CategoryUpdateManyMutationInput!, where: CategoryWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyArticles(where: ArticleWhereInput): BatchPayload!
   deleteManyTags(where: TagWhereInput): BatchPayload!
+  deleteManyCategories(where: CategoryWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -1038,12 +1432,15 @@ type Query {
   users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
   articles(where: ArticleWhereInput, orderBy: ArticleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Article]!
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag]!
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category]!
   user(where: UserWhereUniqueInput!): User
   article(where: ArticleWhereUniqueInput!): Article
   tag(where: TagWhereUniqueInput!): Tag
+  category(where: CategoryWhereUniqueInput!): Category
   usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
   articlesConnection(where: ArticleWhereInput, orderBy: ArticleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ArticleConnection!
   tagsConnection(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TagConnection!
+  categoriesConnection(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CategoryConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -1056,6 +1453,7 @@ type Subscription {
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
   article(where: ArticleSubscriptionWhereInput): ArticleSubscriptionPayload
   tag(where: TagSubscriptionWhereInput): TagSubscriptionPayload
+  category(where: CategorySubscriptionWhereInput): CategorySubscriptionPayload
 }
 
 type Tag implements Node {

@@ -8,6 +8,7 @@ const articleUpdatableFields = gql`{
     source
     author
     tags
+    categories
     image
     createdAt
     updatedAt
@@ -23,6 +24,7 @@ const ARTICLE_UPDATE_MUTATION = gql`
         $source: String
         $author: String
         $tags: String
+        $categories: String
     ) {
         updateArticle(
             id:$id
@@ -33,6 +35,7 @@ const ARTICLE_UPDATE_MUTATION = gql`
             source: $source
             author: $author
             tags: $tags
+            categories: $categories
         )
          {
             id
@@ -44,6 +47,10 @@ const ARTICLE_UPDATE_MUTATION = gql`
             author
             image
             tags {
+                id
+                label
+            }
+            categories {
                 id
                 label
             }

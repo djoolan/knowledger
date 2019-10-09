@@ -9,6 +9,7 @@ const ARTICLE_CREATE_MUTATION = gql`
         $source: String
         $author: String
         $tags: String
+        $categories: String
         $image: String
     ) {
         createArticle(
@@ -19,6 +20,7 @@ const ARTICLE_CREATE_MUTATION = gql`
             source: $source
             author: $author
             tags: $tags
+            categories: $categories
             image: $image
         ) {
             id

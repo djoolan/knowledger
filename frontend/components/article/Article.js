@@ -6,6 +6,7 @@ import ARTICLE_QUERY from '../../queries/ARTICLE_QUERY'
 import ArticleCreate from './ArticleCreate'
 import ArticleUpdate from './ArticleUpdate'
 import ArticleDelete from './ArticleDelete'
+import StyledLoader from '../loader/styles/StyledLoader'
 
 function Article({ router }) {
     const { id } = router.query
@@ -52,9 +53,10 @@ function Article({ router }) {
         : (
             <Query query={ARTICLE_QUERY} variables={{ id }}>
                 {({ data, loading, error }) => {
-                    if (loading) return <p>Loading</p>
-                    if (error) return <p>Error : { error.message }</p>
+                    if (loading) return <StyledLoader>Loading</StyledLoader>
+                    if (error) return <StyledArticleForm>Error : { error.message }</StyledArticleForm>
                     const { article } = data
+                    console.log('article', article)
                     return (
                         <Fragment>
                             <ArticleDelete 

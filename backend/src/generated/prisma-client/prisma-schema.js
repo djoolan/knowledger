@@ -7,6 +7,10 @@ module.exports = {
   count: Int!
 }
 
+type AggregateCategory {
+  count: Int!
+}
+
 type AggregateTag {
   count: Int!
 }
@@ -25,6 +29,7 @@ type Article {
   author: String
   image: String
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category!]
   createdAt: DateTime!
   updatedAt: DateTime!
 }
@@ -45,11 +50,29 @@ input ArticleCreateInput {
   author: String
   image: String
   tags: TagCreateManyWithoutArticlesInput
+  categories: CategoryCreateManyWithoutArticlesInput
+}
+
+input ArticleCreateManyWithoutCategoriesInput {
+  create: [ArticleCreateWithoutCategoriesInput!]
+  connect: [ArticleWhereUniqueInput!]
 }
 
 input ArticleCreateManyWithoutTagsInput {
   create: [ArticleCreateWithoutTagsInput!]
   connect: [ArticleWhereUniqueInput!]
+}
+
+input ArticleCreateWithoutCategoriesInput {
+  id: ID
+  title: String!
+  uri: String
+  summary: String
+  takeaway: String
+  source: String
+  author: String
+  image: String
+  tags: TagCreateManyWithoutArticlesInput
 }
 
 input ArticleCreateWithoutTagsInput {
@@ -61,6 +84,7 @@ input ArticleCreateWithoutTagsInput {
   source: String
   author: String
   image: String
+  categories: CategoryCreateManyWithoutArticlesInput
 }
 
 type ArticleEdge {
@@ -265,6 +289,7 @@ input ArticleUpdateInput {
   author: String
   image: String
   tags: TagUpdateManyWithoutArticlesInput
+  categories: CategoryUpdateManyWithoutArticlesInput
 }
 
 input ArticleUpdateManyDataInput {
@@ -287,6 +312,18 @@ input ArticleUpdateManyMutationInput {
   image: String
 }
 
+input ArticleUpdateManyWithoutCategoriesInput {
+  create: [ArticleCreateWithoutCategoriesInput!]
+  delete: [ArticleWhereUniqueInput!]
+  connect: [ArticleWhereUniqueInput!]
+  set: [ArticleWhereUniqueInput!]
+  disconnect: [ArticleWhereUniqueInput!]
+  update: [ArticleUpdateWithWhereUniqueWithoutCategoriesInput!]
+  upsert: [ArticleUpsertWithWhereUniqueWithoutCategoriesInput!]
+  deleteMany: [ArticleScalarWhereInput!]
+  updateMany: [ArticleUpdateManyWithWhereNestedInput!]
+}
+
 input ArticleUpdateManyWithoutTagsInput {
   create: [ArticleCreateWithoutTagsInput!]
   delete: [ArticleWhereUniqueInput!]
@@ -304,6 +341,17 @@ input ArticleUpdateManyWithWhereNestedInput {
   data: ArticleUpdateManyDataInput!
 }
 
+input ArticleUpdateWithoutCategoriesDataInput {
+  title: String
+  uri: String
+  summary: String
+  takeaway: String
+  source: String
+  author: String
+  image: String
+  tags: TagUpdateManyWithoutArticlesInput
+}
+
 input ArticleUpdateWithoutTagsDataInput {
   title: String
   uri: String
@@ -312,11 +360,23 @@ input ArticleUpdateWithoutTagsDataInput {
   source: String
   author: String
   image: String
+  categories: CategoryUpdateManyWithoutArticlesInput
+}
+
+input ArticleUpdateWithWhereUniqueWithoutCategoriesInput {
+  where: ArticleWhereUniqueInput!
+  data: ArticleUpdateWithoutCategoriesDataInput!
 }
 
 input ArticleUpdateWithWhereUniqueWithoutTagsInput {
   where: ArticleWhereUniqueInput!
   data: ArticleUpdateWithoutTagsDataInput!
+}
+
+input ArticleUpsertWithWhereUniqueWithoutCategoriesInput {
+  where: ArticleWhereUniqueInput!
+  update: ArticleUpdateWithoutCategoriesDataInput!
+  create: ArticleCreateWithoutCategoriesInput!
 }
 
 input ArticleUpsertWithWhereUniqueWithoutTagsInput {
@@ -441,6 +501,9 @@ input ArticleWhereInput {
   tags_every: TagWhereInput
   tags_some: TagWhereInput
   tags_none: TagWhereInput
+  categories_every: CategoryWhereInput
+  categories_some: CategoryWhereInput
+  categories_none: CategoryWhereInput
   createdAt: DateTime
   createdAt_not: DateTime
   createdAt_in: [DateTime!]
@@ -470,6 +533,190 @@ type BatchPayload {
   count: Long!
 }
 
+type Category {
+  id: ID!
+  label: String!
+  articles(where: ArticleWhereInput, orderBy: ArticleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Article!]
+}
+
+type CategoryConnection {
+  pageInfo: PageInfo!
+  edges: [CategoryEdge]!
+  aggregate: AggregateCategory!
+}
+
+input CategoryCreateInput {
+  id: ID
+  label: String!
+  articles: ArticleCreateManyWithoutCategoriesInput
+}
+
+input CategoryCreateManyWithoutArticlesInput {
+  create: [CategoryCreateWithoutArticlesInput!]
+  connect: [CategoryWhereUniqueInput!]
+}
+
+input CategoryCreateWithoutArticlesInput {
+  id: ID
+  label: String!
+}
+
+type CategoryEdge {
+  node: Category!
+  cursor: String!
+}
+
+enum CategoryOrderByInput {
+  id_ASC
+  id_DESC
+  label_ASC
+  label_DESC
+}
+
+type CategoryPreviousValues {
+  id: ID!
+  label: String!
+}
+
+input CategoryScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  label: String
+  label_not: String
+  label_in: [String!]
+  label_not_in: [String!]
+  label_lt: String
+  label_lte: String
+  label_gt: String
+  label_gte: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  AND: [CategoryScalarWhereInput!]
+  OR: [CategoryScalarWhereInput!]
+  NOT: [CategoryScalarWhereInput!]
+}
+
+type CategorySubscriptionPayload {
+  mutation: MutationType!
+  node: Category
+  updatedFields: [String!]
+  previousValues: CategoryPreviousValues
+}
+
+input CategorySubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: CategoryWhereInput
+  AND: [CategorySubscriptionWhereInput!]
+  OR: [CategorySubscriptionWhereInput!]
+  NOT: [CategorySubscriptionWhereInput!]
+}
+
+input CategoryUpdateInput {
+  label: String
+  articles: ArticleUpdateManyWithoutCategoriesInput
+}
+
+input CategoryUpdateManyDataInput {
+  label: String
+}
+
+input CategoryUpdateManyMutationInput {
+  label: String
+}
+
+input CategoryUpdateManyWithoutArticlesInput {
+  create: [CategoryCreateWithoutArticlesInput!]
+  delete: [CategoryWhereUniqueInput!]
+  connect: [CategoryWhereUniqueInput!]
+  set: [CategoryWhereUniqueInput!]
+  disconnect: [CategoryWhereUniqueInput!]
+  update: [CategoryUpdateWithWhereUniqueWithoutArticlesInput!]
+  upsert: [CategoryUpsertWithWhereUniqueWithoutArticlesInput!]
+  deleteMany: [CategoryScalarWhereInput!]
+  updateMany: [CategoryUpdateManyWithWhereNestedInput!]
+}
+
+input CategoryUpdateManyWithWhereNestedInput {
+  where: CategoryScalarWhereInput!
+  data: CategoryUpdateManyDataInput!
+}
+
+input CategoryUpdateWithoutArticlesDataInput {
+  label: String
+}
+
+input CategoryUpdateWithWhereUniqueWithoutArticlesInput {
+  where: CategoryWhereUniqueInput!
+  data: CategoryUpdateWithoutArticlesDataInput!
+}
+
+input CategoryUpsertWithWhereUniqueWithoutArticlesInput {
+  where: CategoryWhereUniqueInput!
+  update: CategoryUpdateWithoutArticlesDataInput!
+  create: CategoryCreateWithoutArticlesInput!
+}
+
+input CategoryWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  label: String
+  label_not: String
+  label_in: [String!]
+  label_not_in: [String!]
+  label_lt: String
+  label_lte: String
+  label_gt: String
+  label_gte: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  articles_every: ArticleWhereInput
+  articles_some: ArticleWhereInput
+  articles_none: ArticleWhereInput
+  AND: [CategoryWhereInput!]
+  OR: [CategoryWhereInput!]
+  NOT: [CategoryWhereInput!]
+}
+
+input CategoryWhereUniqueInput {
+  id: ID
+  label: String
+}
+
 scalar DateTime
 
 scalar Long
@@ -481,6 +728,12 @@ type Mutation {
   upsertArticle(where: ArticleWhereUniqueInput!, create: ArticleCreateInput!, update: ArticleUpdateInput!): Article!
   deleteArticle(where: ArticleWhereUniqueInput!): Article
   deleteManyArticles(where: ArticleWhereInput): BatchPayload!
+  createCategory(data: CategoryCreateInput!): Category!
+  updateCategory(data: CategoryUpdateInput!, where: CategoryWhereUniqueInput!): Category
+  updateManyCategories(data: CategoryUpdateManyMutationInput!, where: CategoryWhereInput): BatchPayload!
+  upsertCategory(where: CategoryWhereUniqueInput!, create: CategoryCreateInput!, update: CategoryUpdateInput!): Category!
+  deleteCategory(where: CategoryWhereUniqueInput!): Category
+  deleteManyCategories(where: CategoryWhereInput): BatchPayload!
   createTag(data: TagCreateInput!): Tag!
   updateTag(data: TagUpdateInput!, where: TagWhereUniqueInput!): Tag
   updateManyTags(data: TagUpdateManyMutationInput!, where: TagWhereInput): BatchPayload!
@@ -516,6 +769,9 @@ type Query {
   article(where: ArticleWhereUniqueInput!): Article
   articles(where: ArticleWhereInput, orderBy: ArticleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Article]!
   articlesConnection(where: ArticleWhereInput, orderBy: ArticleOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ArticleConnection!
+  category(where: CategoryWhereUniqueInput!): Category
+  categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category]!
+  categoriesConnection(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): CategoryConnection!
   tag(where: TagWhereUniqueInput!): Tag
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag]!
   tagsConnection(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): TagConnection!
@@ -527,6 +783,7 @@ type Query {
 
 type Subscription {
   article(where: ArticleSubscriptionWhereInput): ArticleSubscriptionPayload
+  category(where: CategorySubscriptionWhereInput): CategorySubscriptionPayload
   tag(where: TagSubscriptionWhereInput): TagSubscriptionPayload
   user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
 }

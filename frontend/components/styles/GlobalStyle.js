@@ -24,6 +24,9 @@ const GlobalStyle = createGlobalStyle`
         text-decoration: none;
         color: ${props => props.theme.text}
     }
+    span.stabilo {
+        background: ${props => props.theme.primary};
+    }
 ` 
 
 export default GlobalStyle

@@ -54,23 +54,40 @@ const StyledArticleForm = styled.form`
     textarea {
         line-height: 1.3;
     }
+    .select_option {
+        color: black;
+    }
+    .select__option {
+        color: #333;
+    }
+    .tags {
+        .select {
+            label {
+            }
+            input {
+                line-height: 1;
+            }
+        }
+    }
     .select {
         input {
             line-height: 1;
         }
     }
-    label {
-        display: block;
-        width: 100%;
-        margin-bottom: 20px;
-        font-size: 16px;
-        font-weight: normal;
-        color: ${props => props.theme.primary};
-        input {
-            margin-top: -6px;
-        }
-        .select {
-            margin-top: 4px;
+    div[role=group] {
+        & > label {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: normal;
+            color: ${props => props.theme.primary};
+            input {
+                margin-top: -6px;
+            }
+            .select {
+                margin-top: 4px;
+            }
         }
     }
     .author, .source {
@@ -81,7 +98,10 @@ const StyledArticleForm = styled.form`
     }
     button,
     input[type="submit"] {
-        background: ${props => props.theme.primary};
+        /* background: ${props => props.theme.primary}; */
+        background-image: linear-gradient(to right,#fce3ec,#ffe8cc);
+        background-image: linear-gradient(to right,#b4fdff,#b4ffd7);
+        background-image: linear-gradient(to right,#5bced1,#63d397);
         color: white;
         font-size: 18px;
         font-weight: bold;

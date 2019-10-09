@@ -14,6 +14,7 @@ type Mutation {
         author: String
         image: String
         tags: String
+        categories: String
     ): Article!
 
     updateArticle(
@@ -25,6 +26,7 @@ type Mutation {
         source: String
         author: String
         tags: String
+        categories: String
     ): Article!   
     
     deleteArticle(
@@ -43,17 +45,44 @@ type Mutation {
     deleteTag(
         id: ID!
     ): Tag
+
+    createCategory(
+        label: String!
+    ): Category!
+
+    updateCategory(
+        id: ID!
+        label: String!
+    ): Category!
+
+    deleteCategory(
+        id: ID!
+    ): Category
 }
 
 type Query {
+    articlesFeed(filter: String, skip: Int, first: Int, orderBy: ArticleOrderByInput): ArticlesFeed!
     articles: [Article!]!
     article(id: ID!): Article
     tags: [Tag!]!
     tagsWithCount: [TagWithCount!]!
     tag(id: ID!): Tag
+    categories: [Category!]!
+    categoriesWithCount: [CategoryWithCount!]!
+    category(id: ID!): Category
 }
 
 type TagWithCount {
     tag: Tag!
+    count: Int!
+}
+
+type CategoryWithCount {
+    category: Category!
+    count: Int!
+}
+
+type ArticlesFeed {
+    articles: [Article!]!
     count: Int!
 }
