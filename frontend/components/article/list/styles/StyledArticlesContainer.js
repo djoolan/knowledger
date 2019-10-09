@@ -4,7 +4,7 @@ const StyledArticlesContainer = styled.div`
     text-align: center;
     p.count {
         font-size: 16px;
-        font-style: italic;
+        /* font-style: italic; */
     }
     .nav {
         width: 600px;

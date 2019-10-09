@@ -12,10 +12,15 @@ const StyledArticleBlock = styled.li`
     border-radius: 10px;
     padding: 20px;
     width: 100%;
-    a.directLink {
-        font-size: 12px;
-        line-height: 1.3;
-        margin-bottom: 20px;
+    a.direct-link {
+        width: 26px;
+        line-height: 0.6;
+        display: inline-block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 7px;
+        color: ${props => props.theme.primary};
     }
     p {
         text-align: left;
@@ -32,6 +37,9 @@ const StyledArticleBlock = styled.li`
         /* flex-grow: 1; */
         margin: 0;
     }
+    .tags {
+        margin: 2px 0;
+    }
     .tag, .category {
         font-size: 8px;
         font-family: Arial, Helvetica, sans-serif;
@@ -46,9 +54,9 @@ const StyledArticleBlock = styled.li`
     }
     .category {
         display: inline-block;
-        font-size: 8px;
+        font-size: 9px;
         text-transform: uppercase;
-        letter-spacing: 4;
+        letter-spacing: 1px;
         font-weight: 300;
         line-height: 1.3;
         margin-bottom: 5px;

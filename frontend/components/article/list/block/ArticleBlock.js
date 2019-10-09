@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Link from 'next/link'
 import StyledArticleBlock from './styles/StyledArticleBlock';
 import StyledArticleBlockTitle from './styles/StyledArticleBlockTitle';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
 
 const propTypes = {
     article: PropTypes.object.isRequired
@@ -34,13 +36,13 @@ class ArticleBlock extends Component {
                 </StyledArticleBlockTitle>
                 {
                     article.tags
-                        ? <p>{article.tags.map((tag, index) => (
+                        ? <div className="tags">{article.tags.map((tag, index) => (
                             <span key={index} className="tag">{tag.label}</span>
-                        ))}</p>
+                        ))}</div>
                         : null
                 }
-                <a className="directLink" target="blank" href={article.uri}>
-                    <i className="fas fa-external-link-alt"></i>
+                <a className="direct-link" target="blank" href={article.uri}>
+                    <FontAwesomeIcon icon={faExternalLinkAlt} />
                 </a>
                 <p>
                     <span className="author">{ article.author }</span> in <span className="source">{ article.source }</span>

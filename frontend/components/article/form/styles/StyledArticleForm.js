@@ -60,6 +60,9 @@ const StyledArticleForm = styled.form`
     .select__option {
         color: #333;
     }
+    .select__multi-value__label {
+        /* background: ${props => props.theme.primary}; */
+    }
     .tags {
         .select {
             label {
@@ -74,20 +77,18 @@ const StyledArticleForm = styled.form`
             line-height: 1;
         }
     }
-    div[role=group] {
-        & > label {
-            display: block;
-            width: 100%;
-            margin-bottom: 20px;
-            font-size: 16px;
-            font-weight: normal;
-            color: ${props => props.theme.primary};
-            input {
-                margin-top: -6px;
-            }
-            .select {
-                margin-top: 4px;
-            }
+    label {
+        display: block;
+        width: 100%;
+        margin: 10px 0 10px;
+        font-size: 16px;
+        font-weight: normal;
+        color: ${props => props.theme.primary};
+        input {
+            margin-top: -6px;
+        }
+        .select {
+            margin-top: 4px;
         }
     }
     .author, .source {
