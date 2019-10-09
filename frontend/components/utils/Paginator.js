@@ -8,14 +8,14 @@ class Paginator extends Component {
     _previousPage = () => {
         const currentPage = parseInt(this.props.page, 10)
         if (currentPage > 1) {
-            this.props.handleChange(currentPage - 1)
+            this.props.handleChange({ page: currentPage - 1 })
         }
     }
 
     _nextPage = () => {
         const currentPage = parseInt(this.props.page, 10)
         if (currentPage <= this.props.count / this.props.pageSize) {
-            this.props.handleChange(currentPage + 1)
+            this.props.handleChange({ page: currentPage + 1 })
         }
     }
 

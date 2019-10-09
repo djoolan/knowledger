@@ -15,38 +15,37 @@ class ArticleCreate extends Component {
         source: '',
         author: '',
         image: '',
+        tags: '',
         tagsArray: [],
+        categories: '',
+        categoriesArray: [],
     }
     
-    handleChangeTags = (newValue, actionMeta) => {
-        if (newValue) {
-            this.setState({ 
+    _handleChangeTags = (newValue, actionMeta) => {
+        this.setState(newValue
+            ? {
                 tags: newValue.map(v => v.label).join(','),
                 tagsArray: newValue,
+            }
+            : {
+                tags: '', 
+                tagsArray: []
             })
-            return
-        }
-        this.setState({ 
-            tags: '', 
-            tagsArray: []
-        })
     }
 
-    handleChangeCategories = (newValue, actionMeta) => {
-        if (newValue) {
-            this.setState({ 
+    _handleChangeCategories = (newValue, actionMeta) => {
+        this.setState(newValue
+            ? {
                 categories: newValue.map(v => v.label).join(','),
                 categoriesArray: newValue,
+            }
+            : {
+                categories: '', 
+                categoriesArray: []
             })
-            return
-        }
-        this.setState({ 
-            categories: '', 
-            categories: []
-        })
     }
 
-    handleChange = e => {
+    _handleChange = e => {
         console.log('ArticleCreate: handleChange', e)
         console.log('state', this.state)
         console.log('tags', this.state.tags)
@@ -72,9 +71,9 @@ class ArticleCreate extends Component {
                         loading
                         error={error}
                         state={this.state}
-                        handleChange={this.handleChange}
-                        handleChangeTags={this.handleChangeTags}
-                        handleChangeCategories={this.handleChangeCategories}
+                        handleChange={this._handleChange}
+                        handleChangeTags={this._handleChangeTags}
+                        handleChangeCategories={this._handleChangeCategories}
                         formAction={createArticle}
                         submitLabel="Create"
                     />

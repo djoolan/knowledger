@@ -6,11 +6,16 @@ const ArticlesFeedPage = () => {
     const router = useRouter()
     const { query, pathname, asPath } = router
     console.log('router', {query, pathname, asPath})
-    const { page } = router.query
+    const { page, tags, categories, search } = router.query
 
     return (
         <div>
-            <Articles page={page}/>
+            <Articles 
+                page={page}
+                tags={tags}
+                categories={categories}
+                search={search}
+            />
         </div>
     );
 };

@@ -8,7 +8,6 @@ const articles = forwardTo('db')
 // }
 
 async function articlesFeed(root, args, context, info) {
-    console.log(args.tags.map(t => t))
     const where = {
         ...(args.search
             ? {
@@ -25,7 +24,7 @@ async function articlesFeed(root, args, context, info) {
         ...(args.tags
             ? {
                 tags_some: {
-                    OR: args.tags.map(label => ({ label })),
+                    OR: args.tags.split(',').map(label => ({ label })),
                 },
             }
             : {}
@@ -33,7 +32,7 @@ async function articlesFeed(root, args, context, info) {
         ...(args.categories
             ? {
                 categories_some: {
-                    OR: args.categories.map(label => ({ label })),
+                    OR: args.categories.split(',').map(label => ({ label })),
                 },
             }
             : {}

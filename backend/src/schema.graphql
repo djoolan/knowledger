@@ -64,8 +64,8 @@ type Mutation {
 type Query {
     articlesFeed(
         search: String, 
-        tags: [String], 
-        categories: [String], 
+        tags: String, 
+        categories: String, 
         skip: Int, 
         first: Int, 
         orderBy: ArticleOrderByInput

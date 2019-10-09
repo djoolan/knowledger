@@ -21,6 +21,10 @@ const StyledArticleBlock = styled.li`
         right: 0;
         padding: 7px;
         color: ${props => props.theme.primary};
+        svg {
+            width: 12px;
+            height: 12px;
+        }
     }
     p {
         text-align: left;

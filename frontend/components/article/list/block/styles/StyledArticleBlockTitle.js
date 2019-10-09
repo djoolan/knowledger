@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 const StyledArticleBlockTitle = styled.div`
     text-align: left;
+    line-height: 1.1;
     a {
         color: ${props => props.theme.primary};
         font-size: 22px;
