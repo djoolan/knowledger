@@ -1,5 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 
 class Paginator extends Component {
     _previousPage = () => {
@@ -21,9 +24,15 @@ class Paginator extends Component {
         return (
             <div>
                 <div className="nav">
-                    <div className="pager prev" onClick={this._previousPage}>&lt;<i className="fas fa-caret-left"></i></div>
-                    <p className="count">Page {this.props.page} / {maxPageIndex} ({ this.props.count } articles)</p>
-                    <div className="pager next" onClick={this._nextPage}>&gt;<i className="fas fa-chevron-right"></i></div>
+                    <div className="pager prev" onClick={this._previousPage}>
+                        <FontAwesomeIcon icon={faCaretLeft} />
+                    </div>
+                    <p className="count">
+                        Page {this.props.page} / {maxPageIndex} ({ this.props.count } articles)
+                    </p>
+                    <div className="pager next" onClick={this._nextPage}>
+                        <FontAwesomeIcon icon={faCaretRight} />
+                    </div>
                 </div>
                 {this.props.children}
             </div>

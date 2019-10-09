@@ -27,6 +27,7 @@ type Mutation {
         author: String
         tags: String
         categories: String
+        readStatus: String
     ): Article!   
     
     deleteArticle(
@@ -61,7 +62,14 @@ type Mutation {
 }
 
 type Query {
-    articlesFeed(filter: String, skip: Int, first: Int, orderBy: ArticleOrderByInput): ArticlesFeed!
+    articlesFeed(
+        search: String, 
+        tags: [String], 
+        categories: [String], 
+        skip: Int, 
+        first: Int, 
+        orderBy: ArticleOrderByInput
+    ): ArticlesFeed!
     articles: [Article!]!
     article(id: ID!): Article
     tags: [Tag!]!

@@ -14,6 +14,7 @@ type Article {
   source: String
   author: String
   image: String
+  readStatus: ArticleReadStatus
   tags: [Tag!]!
   categories: [Category!]!
   createdAt: DateTime! @createdAt
@@ -30,4 +31,10 @@ type Category {
   id: ID! @id
   label: String! @unique
   articles: [Article!]!
+}
+
+enum ArticleReadStatus {
+    TOD0
+    PROGRESS
+    DONE
 }

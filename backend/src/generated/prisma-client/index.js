@@ -19,6 +19,10 @@ var models = [
   {
     name: "Category",
     embedded: false
+  },
+  {
+    name: "ArticleReadStatus",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({

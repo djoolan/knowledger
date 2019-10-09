@@ -237,6 +237,8 @@ export type ArticleOrderByInput =
   | "author_DESC"
   | "image_ASC"
   | "image_DESC"
+  | "readStatus_ASC"
+  | "readStatus_DESC"
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
@@ -247,6 +249,8 @@ export type CategoryOrderByInput =
   | "id_DESC"
   | "label_ASC"
   | "label_DESC";
+
+export type ArticleReadStatus = "TOD0" | "PROGRESS" | "DONE";
 
 export type UserOrderByInput =
   | "id_ASC"
@@ -359,6 +363,7 @@ export interface ArticleUpdateInput {
   source?: Maybe<String>;
   author?: Maybe<String>;
   image?: Maybe<String>;
+  readStatus?: Maybe<ArticleReadStatus>;
   tags?: Maybe<TagUpdateManyWithoutArticlesInput>;
   categories?: Maybe<CategoryUpdateManyWithoutArticlesInput>;
 }
@@ -503,6 +508,7 @@ export interface ArticleCreateWithoutTagsInput {
   source?: Maybe<String>;
   author?: Maybe<String>;
   image?: Maybe<String>;
+  readStatus?: Maybe<ArticleReadStatus>;
   categories?: Maybe<CategoryCreateManyWithoutArticlesInput>;
 }
 
@@ -619,6 +625,10 @@ export interface ArticleScalarWhereInput {
   image_not_starts_with?: Maybe<String>;
   image_ends_with?: Maybe<String>;
   image_not_ends_with?: Maybe<String>;
+  readStatus?: Maybe<ArticleReadStatus>;
+  readStatus_not?: Maybe<ArticleReadStatus>;
+  readStatus_in?: Maybe<ArticleReadStatus[] | ArticleReadStatus>;
+  readStatus_not_in?: Maybe<ArticleReadStatus[] | ArticleReadStatus>;
   createdAt?: Maybe<DateTimeInput>;
   createdAt_not?: Maybe<DateTimeInput>;
   createdAt_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -689,6 +699,7 @@ export interface ArticleUpdateManyDataInput {
   source?: Maybe<String>;
   author?: Maybe<String>;
   image?: Maybe<String>;
+  readStatus?: Maybe<ArticleReadStatus>;
 }
 
 export interface CategoryUpdateWithoutArticlesDataInput {
@@ -812,6 +823,7 @@ export interface ArticleUpdateWithoutTagsDataInput {
   source?: Maybe<String>;
   author?: Maybe<String>;
   image?: Maybe<String>;
+  readStatus?: Maybe<ArticleReadStatus>;
   categories?: Maybe<CategoryUpdateManyWithoutArticlesInput>;
 }
 
@@ -832,6 +844,7 @@ export interface ArticleUpdateManyMutationInput {
   source?: Maybe<String>;
   author?: Maybe<String>;
   image?: Maybe<String>;
+  readStatus?: Maybe<ArticleReadStatus>;
 }
 
 export interface UserWhereInput {
@@ -915,6 +928,7 @@ export interface ArticleUpdateWithoutCategoriesDataInput {
   source?: Maybe<String>;
   author?: Maybe<String>;
   image?: Maybe<String>;
+  readStatus?: Maybe<ArticleReadStatus>;
   tags?: Maybe<TagUpdateManyWithoutArticlesInput>;
 }
 
@@ -1031,6 +1045,10 @@ export interface ArticleWhereInput {
   image_not_starts_with?: Maybe<String>;
   image_ends_with?: Maybe<String>;
   image_not_ends_with?: Maybe<String>;
+  readStatus?: Maybe<ArticleReadStatus>;
+  readStatus_not?: Maybe<ArticleReadStatus>;
+  readStatus_in?: Maybe<ArticleReadStatus[] | ArticleReadStatus>;
+  readStatus_not_in?: Maybe<ArticleReadStatus[] | ArticleReadStatus>;
   tags_every?: Maybe<TagWhereInput>;
   tags_some?: Maybe<TagWhereInput>;
   tags_none?: Maybe<TagWhereInput>;
@@ -1106,6 +1124,7 @@ export interface ArticleCreateWithoutCategoriesInput {
   source?: Maybe<String>;
   author?: Maybe<String>;
   image?: Maybe<String>;
+  readStatus?: Maybe<ArticleReadStatus>;
   tags?: Maybe<TagCreateManyWithoutArticlesInput>;
 }
 
@@ -1136,6 +1155,7 @@ export interface ArticleCreateInput {
   source?: Maybe<String>;
   author?: Maybe<String>;
   image?: Maybe<String>;
+  readStatus?: Maybe<ArticleReadStatus>;
   tags?: Maybe<TagCreateManyWithoutArticlesInput>;
   categories?: Maybe<CategoryCreateManyWithoutArticlesInput>;
 }
@@ -1460,6 +1480,7 @@ export interface Article {
   source?: String;
   author?: String;
   image?: String;
+  readStatus?: ArticleReadStatus;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
@@ -1473,6 +1494,7 @@ export interface ArticlePromise extends Promise<Article>, Fragmentable {
   source: () => Promise<String>;
   author: () => Promise<String>;
   image: () => Promise<String>;
+  readStatus: () => Promise<ArticleReadStatus>;
   tags: <T = FragmentableArray<Tag>>(args?: {
     where?: TagWhereInput;
     orderBy?: TagOrderByInput;
@@ -1506,6 +1528,7 @@ export interface ArticleSubscription
   source: () => Promise<AsyncIterator<String>>;
   author: () => Promise<AsyncIterator<String>>;
   image: () => Promise<AsyncIterator<String>>;
+  readStatus: () => Promise<AsyncIterator<ArticleReadStatus>>;
   tags: <T = Promise<AsyncIterator<TagSubscription>>>(args?: {
     where?: TagWhereInput;
     orderBy?: TagOrderByInput;
@@ -1539,6 +1562,7 @@ export interface ArticleNullablePromise
   source: () => Promise<String>;
   author: () => Promise<String>;
   image: () => Promise<String>;
+  readStatus: () => Promise<ArticleReadStatus>;
   tags: <T = FragmentableArray<Tag>>(args?: {
     where?: TagWhereInput;
     orderBy?: TagOrderByInput;
@@ -1750,6 +1774,7 @@ export interface ArticlePreviousValues {
   source?: String;
   author?: String;
   image?: String;
+  readStatus?: ArticleReadStatus;
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
 }
@@ -1765,6 +1790,7 @@ export interface ArticlePreviousValuesPromise
   source: () => Promise<String>;
   author: () => Promise<String>;
   image: () => Promise<String>;
+  readStatus: () => Promise<ArticleReadStatus>;
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
 }
@@ -1780,6 +1806,7 @@ export interface ArticlePreviousValuesSubscription
   source: () => Promise<AsyncIterator<String>>;
   author: () => Promise<AsyncIterator<String>>;
   image: () => Promise<AsyncIterator<String>>;
+  readStatus: () => Promise<AsyncIterator<ArticleReadStatus>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -1909,6 +1936,10 @@ export const models: Model[] = [
   },
   {
     name: "Category",
+    embedded: false
+  },
+  {
+    name: "ArticleReadStatus",
     embedded: false
   }
 ];

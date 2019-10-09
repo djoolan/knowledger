@@ -8,13 +8,38 @@ const articles = forwardTo('db')
 // }
 
 async function articlesFeed(root, args, context, info) {
-    const where = args.filter ? {
-        OR: [
-          { description_contains: args.filter },
-          { url_contains: args.filter },
-        ],
-    } : {}
-
+    console.log(args.tags.map(t => t))
+    const where = {
+        ...(args.search
+            ? {
+                OR: [
+                    { title_contains: args.search },
+                    { uri_contains: args.search },
+                    { author_contains: args.search },
+                    { source_contains: args.search },
+                    { summary_contains: args.search },
+                    { tags_some: { label_contains: args.search } },
+                ],
+            }
+            : {}),
+        ...(args.tags
+            ? {
+                tags_some: {
+                    OR: args.tags.map(label => ({ label })),
+                },
+            }
+            : {}
+        ),
+        ...(args.categories
+            ? {
+                categories_some: {
+                    OR: args.categories.map(label => ({ label })),
+                },
+            }
+            : {}
+        ),
+    }
+    
     const count = (await context.prisma.articles({
         where,
     })).length
@@ -25,6 +50,7 @@ async function articlesFeed(root, args, context, info) {
         first: args.first,
         orderBy: args.orderBy,
     })
+
     return {
         articles,
         count

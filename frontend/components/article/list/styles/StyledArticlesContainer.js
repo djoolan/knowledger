@@ -16,20 +16,14 @@ const StyledArticlesContainer = styled.div`
         justify-content: center;
         align-items: center;
         .pager {
-            width: 30px;
-            margin-top: 4px;
-            line-height: 2;
-            /* border-radius: 4px; */
-            /* border: 1px solid ${props => props.theme.primary}; */
+            width: 10px;
+            height: 28px;
             color: ${props => props.theme.primary};
-            /* font-weight: bold; */
-            /* font-size: 18px; */
-            /* padding: 2px 8px; */
             pointer-events: auto;
-            .prev {
+            &.prev {
                 margin-right: 10px;
             }
-            .next {
+            &.next {
                 margin-left: 10px;
             }
         }

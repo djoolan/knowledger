@@ -10,7 +10,7 @@ const StyledArticleBlock = styled.li`
     /* border: 1px solid #ebebeb; */
     box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.08);
     border-radius: 10px;
-    padding: 20px;
+    padding: 20px 20px 30px 20px;
     width: 100%;
     a.direct-link {
         width: 26px;
@@ -81,6 +81,14 @@ const StyledArticleBlock = styled.li`
             font-size: 1.2rem;
             border: 0;
         }
+    }
+    .ago {
+        position: absolute;
+        bottom: 10px;
+        right: 20px;
+        font-size: 10px;
+        font-style: italic;
+        color: #999;
     }
 `
 export default StyledArticleBlock

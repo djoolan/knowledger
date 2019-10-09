@@ -5,6 +5,7 @@ import StyledArticleBlock from './styles/StyledArticleBlock';
 import StyledArticleBlockTitle from './styles/StyledArticleBlockTitle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons'
+import { timeDifferenceForDate } from '../../../../utils'
 
 const propTypes = {
     article: PropTypes.object.isRequired
@@ -57,6 +58,7 @@ class ArticleBlock extends Component {
                         <a>Remove</a>
                     </Link>
                 </div> */}
+                <span className="ago">{timeDifferenceForDate(article.createdAt)}</span>
             </StyledArticleBlock>
         )
     }
