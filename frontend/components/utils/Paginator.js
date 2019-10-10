@@ -5,22 +5,27 @@ import { faCaretLeft } from '@fortawesome/free-solid-svg-icons'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons'
 
 class Paginator extends Component {
-    _previousPage = () => {
-        const currentPage = parseInt(this.props.page, 10)
+    _prevPage = () => {
+        const { page, count, pageSize, handleChange } = this.props
+        const currentPage = parseInt(page, 10)
+        // console.log('_prevPage', { page, currentPage, count, pageSize, handleChange })
         if (currentPage > 1) {
-            this.props.handleChange({ page: currentPage - 1 })
+            handleChange({ page: currentPage - 1 })
         }
     }
 
     _nextPage = () => {
-        const currentPage = parseInt(this.props.page, 10)
-        if (currentPage <= this.props.count / this.props.pageSize) {
-            this.props.handleChange({ page: currentPage + 1 })
+        const { page, count, pageSize, handleChange } = this.props
+        const currentPage = parseInt(page, 10)
+        // console.log('_nextPage', { page, currentPage, count, pageSize, handleChange })
+        if (currentPage <= count / pageSize) {
+            handleChange({ page: currentPage + 1 })
         }
     }
 
     render() {
         const { page, pageSize, count, children, handleChange } = this.props
+        // console.log({ page, pageSize, count, children, handleChange })
         const maxPageIndex = Math.ceil(count / pageSize)
         // if (page > maxPageIndex) {
         //     handleChange({ page: maxPageIndex })
@@ -28,7 +33,7 @@ class Paginator extends Component {
         return (
             <div>
                 <div className="nav">
-                    <div className="pager prev" onClick={this._previousPage}>
+                    <div className="pager prev" onClick={this._prevPage}>
                         <FontAwesomeIcon icon={faCaretLeft} />
                     </div>
                     <p className="count">

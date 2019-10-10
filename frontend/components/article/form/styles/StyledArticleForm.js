@@ -61,7 +61,6 @@ const StyledArticleForm = styled.form`
         color: #333;
     }
     .select__multi-value__label {
-        /* background: ${props => props.theme.primary}; */
     }
     .tags {
         .select {
@@ -99,7 +98,6 @@ const StyledArticleForm = styled.form`
     }
     button,
     input[type="submit"] {
-        /* background: ${props => props.theme.primary}; */
         background-image: linear-gradient(to right,#fce3ec,#ffe8cc);
         background-image: linear-gradient(to right,#b4fdff,#b4ffd7);
         background-image: linear-gradient(to right,#5bced1,#63d397);

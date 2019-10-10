@@ -6,9 +6,9 @@ export const TAGS_QUERY_MOCK = {
     },
     result: {
         data: {
-        tags: [
-            { id: '1', label: 'JavaScript' },
-        ],
+            tags: [
+                { id: '1', label: 'JavaScript' },
+            ],
         },
     },
 }

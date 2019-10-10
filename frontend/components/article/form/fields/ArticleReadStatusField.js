@@ -6,6 +6,9 @@ import ReadStatusSelect from '../../../readStatus/form/ReadStatusSelect'
 class ArticleReadStatusField extends Component {
     render() {
         const { value, handleChange } = this.props
+        const creatable = this.props.creatable
+            ? !!this.props.creatable
+            : true
         const name = "readStatus"
         return (
             <LabelField
@@ -15,7 +18,7 @@ class ArticleReadStatusField extends Component {
                     name={name}
                     value={value}
                     handleChange={handleChange}
-                    creatable={true}
+                    creatable={creatable}
                 />
             </LabelField>
         )
@@ -23,8 +26,9 @@ class ArticleReadStatusField extends Component {
 }
 
 ArticleReadStatusField.propTypes = {
-    value: PropTypes.array,
+    value: PropTypes.any,
     handleChange: PropTypes.func,
+    creatable: PropTypes.bool,
 }
 
 export default ArticleReadStatusField

@@ -9,10 +9,6 @@ const StyledArticleBlockTitle = styled.div`
         font-weight: 700;
         line-height: 1.1;
         color: black;
-        /* text-decoration: underline; */
-        /* background: ${props => props.theme.primary};
-        background-size: 20% 20%;
-        background-repeat: no-repeat; */
         background-image: linear-gradient(
             to bottom, 
             transparent 50%, 

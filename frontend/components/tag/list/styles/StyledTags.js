@@ -7,8 +7,6 @@ const StyledTags = styled.ul`
     @media (max-width: 1200px) {
         width: calc(900px - 2 * ${props => props.theme.pagePadding});
         grid-template-columns: calc((100% - 2 * ${props => props.theme.gridGap}) / 3) calc((100% - 2 * ${props => props.theme.gridGap}) / 3) calc((100% - 2 * ${props => props.theme.gridGap}) / 3);
-        /* grid-template-columns: ${props => props.theme.gridGap}; */
-        /* grid-template-columns: 1fr 1fr 1fr; */
     }
     @media (max-width: 900px) {
         width: calc(600px - 2 * ${props => props.theme.pagePadding});

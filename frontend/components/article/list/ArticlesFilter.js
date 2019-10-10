@@ -6,10 +6,10 @@ import StyledArticlesFilter from './styles/StyledArticlesFilter'
 import InputField from '../../form/InputField'
 
 const propTypes = {
-    handleChange: PropTypes.func.isRequired,
-    tags: PropTypes.string.isRequired,
-    categories: PropTypes.string.isRequired,
-    search: PropTypes.string.isRequired,
+    handleChange: PropTypes.func,
+    tags: PropTypes.string,
+    categories: PropTypes.string,
+    search: PropTypes.string,
 }
 
 class ArticlesFilter extends Component {
@@ -31,12 +31,14 @@ class ArticlesFilter extends Component {
     })
 
     _handleChange = e => {
+        // console.log('handleChange', this.props.handleChange, this._getFilterProps(this.state))
         this.props.handleChange(this._getFilterProps(this.state))
     }
 
     _handleChangeSearch = e => {
         const { name, type, value } = e.target
         const v = type === 'number' ? parseFloat(value) : value
+        // console.log('_handleChangeSearch', { name, type, value, v })
         this.setState({ [name]: v })
     }
 
@@ -56,6 +58,7 @@ class ArticlesFilter extends Component {
         const { search, tags, categories } = this.props
         return (
             <StyledArticlesFilter
+                className="articles-filter-form"
                 onSubmit={e => { 
                     e.preventDefault()
                     this._handleChange(e)
