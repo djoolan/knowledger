@@ -75,15 +75,15 @@ class Articles extends Component {
                         return (
                             <Fragment>
                                 <Paginator 
-                                    page={this.props.page} 
+                                    page={parseInt(this.props.page, 10)} 
                                     pageSize={ARTICLE_BLOCKS_PER_PAGE} 
                                     count={count}
                                     handleChange={this._handleChange}
                                 />
 
                                 <ArticlesFilter 
-                                    tags={this.props.tags} 
-                                    categories={this.props.categories} 
+                                    tags={this.props.tags ? this.props.tags : ''} 
+                                    categories={this.props.categories ? this.props.categories : ''} 
                                     search={this.props.search} 
                                     handleChange={this._handleChange}
                                 />

@@ -25,6 +25,7 @@ const ARTICLE_UPDATE_MUTATION = gql`
         $author: String
         $tags: String
         $categories: String
+        $isRead: Boolean
     ) {
         updateArticle(
             id:$id
@@ -36,6 +37,7 @@ const ARTICLE_UPDATE_MUTATION = gql`
             author: $author
             tags: $tags
             categories: $categories
+            isRead: $isRead
         )
          {
             id
@@ -45,7 +47,7 @@ const ARTICLE_UPDATE_MUTATION = gql`
             takeaway
             source
             author
-            image
+            isRead
             tags {
                 id
                 label

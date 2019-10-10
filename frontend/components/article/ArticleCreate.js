@@ -19,8 +19,14 @@ class ArticleCreate extends Component {
         tagsArray: [],
         categories: '',
         categoriesArray: [],
+        isRead: false,
+        readStatus: null,
     }
     
+    _handleChangeReadStatus = (newValue, actionMeta) => {
+        this.setState({ readStatus: newValue })
+    }
+
     _handleChangeTags = (newValue, actionMeta) => {
         this.setState(newValue
             ? {
@@ -70,6 +76,7 @@ class ArticleCreate extends Component {
                         handleChange={this._handleChange}
                         handleChangeTags={this._handleChangeTags}
                         handleChangeCategories={this._handleChangeCategories}
+                        handleChangeReadStatus={this._handleChangeReadStatus}
                         formAction={createArticle}
                         submitLabel="Create"
                     />

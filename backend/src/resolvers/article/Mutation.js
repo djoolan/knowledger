@@ -104,7 +104,7 @@ async function updateArticle(parent, args, ctx, info) {
     if (!currentArticle) {
         throw `Article not found for id #${id}`
     }
-    console.log('updateArticle : currentArticle', currentArticle)
+    console.log('updateArticle : currentArticle', currentArticle, normalizeArticleData(props))
     const data = {
         ...normalizeArticleData(props),
         ...await getArticleTagRelations(id, tags, ctx),

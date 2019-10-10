@@ -12,6 +12,7 @@ const ARTICLE_QUERY = gql`
             source
             author
             image
+            isRead
             createdAt
             updatedAt
             tags {

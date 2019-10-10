@@ -18,44 +18,48 @@ class ArticleUpdate extends Component {
         tags: this.props.article.tags ? this.props.article.tags.map(v => v.label).join(',') : '',
         categoriesArray: this.props.article.categories || [],
         categories: this.props.article.categories ? this.props.article.categories.map(v => v.label).join(',') : '',
+        isRead: !!this.props.article.isRead,
+        readStatus: this.props.article.readStatus,
         // ...this.props.article,
     }
     
-    handleChangeTags = (newValue, actionMeta) => {
-        if (newValue) {
-            this.setState({ 
+    _handleChangeReadStatus = (newValue, actionMeta) => {
+        this.setState({ readStatus: newValue })
+    }
+
+    _handleChangeTags = (newValue, actionMeta) => {
+        this.setState(newValue
+            ? {
                 tags: newValue.map(v => v.label).join(','),
                 tagsArray: newValue,
+            }
+            : {
+                tags: '', 
+                tagsArray: []
             })
-            return
-        }
-        this.setState({ 
-            tags: '', 
-            tagsArray: []
-        })
     }
 
-    handleChangeCategories = (newValue, actionMeta) => {
-        if (newValue) {
-            this.setState({ 
+    _handleChangeCategories = (newValue, actionMeta) => {
+        this.setState(newValue
+            ? {
                 categories: newValue.map(v => v.label).join(','),
                 categoriesArray: newValue,
+            }
+            : {
+                categories: '', 
+                categoriesArray: []
             })
-            return
-        }
-        this.setState({ 
-            categories: '', 
-            categories: []
-        })
     }
 
-    handleChange = e => {
-        console.log('ArticleUpdate : handleChange', e)
-        console.log('state', this.state)
-        console.log('tags', this.state.tags)
-        console.log('tagsArray', this.state.tagsArray)
-        const { name, type, value } = e.target
-        const v = type === 'number' ? parseFloat(value) : value
+    _handleChange = e => {
+        console.log('_handleChange', e)
+        const { name, type, value, checked } = e.target
+        const v = type === 'number'
+            ? parseFloat(value)
+            : type === 'checkbox'
+                ? checked
+                : value
+        console.log('_handleChange', { name, type, checked, value, v })
         this.setState({ [name]: v })
     }
 
@@ -81,9 +85,10 @@ class ArticleUpdate extends Component {
                         loading
                         error={error}
                         state={this.state}
-                        handleChange={this.handleChange}
-                        handleChangeTags={this.handleChangeTags}
-                        handleChangeCategories={this.handleChangeCategories}
+                        handleChange={this._handleChange}
+                        handleChangeTags={this._handleChangeTags}
+                        handleChangeCategories={this._handleChangeCategories}
+                        handleChangeReadStatus={this._handleChangeReadStatus}
                         formAction={updateArticle}
                         submitLabel="Update"
                     />

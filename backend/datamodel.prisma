@@ -14,6 +14,7 @@ type Article {
   source: String
   author: String
   image: String
+  isRead: Boolean
   readStatus: ArticleReadStatus
   tags: [Tag!]!
   categories: [Category!]!
@@ -34,7 +35,7 @@ type Category {
 }
 
 enum ArticleReadStatus {
-    TOD0
+    TODO
     PROGRESS
     DONE
 }

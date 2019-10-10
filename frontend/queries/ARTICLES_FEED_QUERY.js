@@ -26,6 +26,7 @@ const ARTICLES_FEED_QUERY = gql`
                 source
                 author
                 image
+                isRead
                 createdAt
                 updatedAt
                 tags {

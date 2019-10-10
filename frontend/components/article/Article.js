@@ -11,7 +11,7 @@ import StyledLoader from '../loader/styles/StyledLoader'
 function Article({ router }) {
     const { id } = router.query
     async function updateCacheAfterCreate(store, article) {
-        console.log('updateCacheAfterCreate, article', article, store)
+        // console.log('updateCacheAfterCreate, article', article, store)
         try {
             const data = await store.readQuery({ query: ARTICLES_QUERY })
             data.articles.push(article)
@@ -23,7 +23,7 @@ function Article({ router }) {
     }
 
     function updateCacheAfterUpdate(store, article) {
-        console.log('updateCacheAfterUpdate, article', article)
+        // console.log('updateCacheAfterUpdate, article', article)
         try {
             const data = store.readQuery({ query: ARTICLES_QUERY })
             const cachedArticle = data.articles.find(a => a.id === article.id)
@@ -33,7 +33,7 @@ function Article({ router }) {
     }
 
     function updateCacheAfterDelete(store, article) {
-        console.log('updateCacheAfterDelete, article', article)
+        // console.log('updateCacheAfterDelete, article', article)
         try {
             const data = store.readQuery({ query: ARTICLES_QUERY })
             data.articles = data.articles.filter(a => a.id !== article.id)

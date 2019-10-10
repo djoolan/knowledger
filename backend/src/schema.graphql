@@ -14,6 +14,7 @@ type Mutation {
         author: String
         image: String
         tags: String
+        isRead: Boolean
         categories: String
     ): Article!
 
@@ -27,6 +28,7 @@ type Mutation {
         author: String
         tags: String
         categories: String
+        isRead: Boolean
         readStatus: String
     ): Article!   
     

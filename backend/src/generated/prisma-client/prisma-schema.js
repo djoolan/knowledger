@@ -28,6 +28,7 @@ type Article {
   source: String
   author: String
   image: String
+  isRead: Boolean
   readStatus: ArticleReadStatus
   tags(where: TagWhereInput, orderBy: TagOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Tag!]
   categories(where: CategoryWhereInput, orderBy: CategoryOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Category!]
@@ -50,6 +51,7 @@ input ArticleCreateInput {
   source: String
   author: String
   image: String
+  isRead: Boolean
   readStatus: ArticleReadStatus
   tags: TagCreateManyWithoutArticlesInput
   categories: CategoryCreateManyWithoutArticlesInput
@@ -74,6 +76,7 @@ input ArticleCreateWithoutCategoriesInput {
   source: String
   author: String
   image: String
+  isRead: Boolean
   readStatus: ArticleReadStatus
   tags: TagCreateManyWithoutArticlesInput
 }
@@ -87,6 +90,7 @@ input ArticleCreateWithoutTagsInput {
   source: String
   author: String
   image: String
+  isRead: Boolean
   readStatus: ArticleReadStatus
   categories: CategoryCreateManyWithoutArticlesInput
 }
@@ -113,6 +117,8 @@ enum ArticleOrderByInput {
   author_DESC
   image_ASC
   image_DESC
+  isRead_ASC
+  isRead_DESC
   readStatus_ASC
   readStatus_DESC
   createdAt_ASC
@@ -130,13 +136,14 @@ type ArticlePreviousValues {
   source: String
   author: String
   image: String
+  isRead: Boolean
   readStatus: ArticleReadStatus
   createdAt: DateTime!
   updatedAt: DateTime!
 }
 
 enum ArticleReadStatus {
-  TOD0
+  TODO
   PROGRESS
   DONE
 }
@@ -254,6 +261,8 @@ input ArticleScalarWhereInput {
   image_not_starts_with: String
   image_ends_with: String
   image_not_ends_with: String
+  isRead: Boolean
+  isRead_not: Boolean
   readStatus: ArticleReadStatus
   readStatus_not: ArticleReadStatus
   readStatus_in: [ArticleReadStatus!]
@@ -305,6 +314,7 @@ input ArticleUpdateInput {
   source: String
   author: String
   image: String
+  isRead: Boolean
   readStatus: ArticleReadStatus
   tags: TagUpdateManyWithoutArticlesInput
   categories: CategoryUpdateManyWithoutArticlesInput
@@ -318,6 +328,7 @@ input ArticleUpdateManyDataInput {
   source: String
   author: String
   image: String
+  isRead: Boolean
   readStatus: ArticleReadStatus
 }
 
@@ -329,6 +340,7 @@ input ArticleUpdateManyMutationInput {
   source: String
   author: String
   image: String
+  isRead: Boolean
   readStatus: ArticleReadStatus
 }
 
@@ -369,6 +381,7 @@ input ArticleUpdateWithoutCategoriesDataInput {
   source: String
   author: String
   image: String
+  isRead: Boolean
   readStatus: ArticleReadStatus
   tags: TagUpdateManyWithoutArticlesInput
 }
@@ -381,6 +394,7 @@ input ArticleUpdateWithoutTagsDataInput {
   source: String
   author: String
   image: String
+  isRead: Boolean
   readStatus: ArticleReadStatus
   categories: CategoryUpdateManyWithoutArticlesInput
 }
@@ -520,6 +534,8 @@ input ArticleWhereInput {
   image_not_starts_with: String
   image_ends_with: String
   image_not_ends_with: String
+  isRead: Boolean
+  isRead_not: Boolean
   readStatus: ArticleReadStatus
   readStatus_not: ArticleReadStatus
   readStatus_in: [ArticleReadStatus!]
