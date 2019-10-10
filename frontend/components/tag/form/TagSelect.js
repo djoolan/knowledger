@@ -13,14 +13,14 @@ class TagSelect extends Component {
             { ({ data, error, loading }) => {
                 if (loading) return <p>Loading</p>
                 if (error) return <p>Error : { error.message }</p>
-                const options = data.tags.map(tag => ({ value: tag.label, label: tag.label }))
+                const options = data.tags.map(item => ({ value: item.label, label: item.label }))
                 const normalizedValue = value ?
                     Array.isArray(value)
                         ? value.map(v => v.label)
                         : value.split(',')
                     : null
                 const defaultValue = normalizedValue
-                    ? options.filter(tag => normalizedValue.includes(tag.label))
+                    ? options.filter(option => normalizedValue.includes(option.label))
                     : null
                 const selectProps = {
                     placeholder: (isMulti ? 'Select tags...' : 'Select a tag...'),

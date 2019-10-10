@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for components/category/form/CategorySelect.js</title>
+    <title>Code coverage report for components/tag/form/TagSelect.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -16,7 +16,7 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../../../index.html">All files</a> / <a href="index.html">components/category/form</a> CategorySelect.js
+      <a href="../../../index.html">All files</a> / <a href="index.html">components/tag/form</a> TagSelect.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
@@ -155,19 +155,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Query } from 'react-apollo'
-import CATEGORIES_QUERY from '../../../queries/CATEGORIES_QUERY'
+import TAGS_QUERY from '../../../queries/TAGS_QUERY'
 import Select from 'react-select'
 import CreatableSelect from 'react-select/creatable'
 &nbsp;
-class CategorySelect extends Component {
+class TagSelect extends Component {
     render() {
         const { name, value, handleChange, creatable, isMulti } = this.props
         return (
-            &lt;Query query={CATEGORIES_QUERY}&gt;
+            &lt;Query query={TAGS_QUERY}&gt;
             { ({ data, error, loading }) =&gt; {
                 if (loading) return &lt;p&gt;Loading&lt;/p&gt;
                 if (error) return &lt;p&gt;Error : { error.message }&lt;/p&gt;
-                const options = data.categories.map(item =&gt; ({ value: item.label, label: item.label }))
+                const options = data.tags.map(item =&gt; ({ value: item.label, label: item.label }))
                 const normalizedValue = value ?
                     Array.isArray(value)
                         ? value.map(v =&gt; v.label)
@@ -177,7 +177,7 @@ class CategorySelect extends Component {
                     ? options.filter(option =&gt; normalizedValue.includes(option.label))
                     : null
                 const selectProps = {
-                    placeholder: (isMulti ? 'Select categories...' : 'Select a category...'),
+                    placeholder: (isMulti ? 'Select tags...' : 'Select a tag...'),
                     name,
                     isMulti,
                     options,
@@ -197,7 +197,7 @@ class CategorySelect extends Component {
     }
 }
 &nbsp;
-CategorySelect.propTypes = {
+TagSelect.propTypes = {
     name: PropTypes.string.isRequired,
     handleChange: PropTypes.func.isRequired,
     value: PropTypes.any,
@@ -205,7 +205,7 @@ CategorySelect.propTypes = {
     isMulti: PropTypes.bool,
 }
 &nbsp;
-export default CategorySelect</pre></td></tr>
+export default TagSelect</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->

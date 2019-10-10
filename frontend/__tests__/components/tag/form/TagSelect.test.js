@@ -4,12 +4,12 @@ import TestRenderer from 'react-test-renderer'
 import { mount } from 'enzyme'
 import { MockedProvider } from '@apollo/react-testing'
 import wait from 'waait'
-import CategorySelect from '../../../../components/category/form/CategorySelect'
+import TagSelect from '../../../../components/tag/form/TagSelect'
 import { 
-    CATEGORIES_QUERY_MOCK, 
-    CATEGORIES_QUERY_MOCK_ERROR, 
-    CATEGORIES_QUERY_MOCK_NODATA,
-} from '../../../../queries/__mocks__/CATEGORIES_QUERY_MOCKS'
+    TAGS_QUERY_MOCK, 
+    TAGS_QUERY_MOCK_ERROR, 
+    TAGS_QUERY_MOCK_NODATA,
+} from '../../../../queries/__mocks__/TAGS_QUERY_MOCKS'
 
 const handleChange = () => {
     return 'toto'
@@ -18,8 +18,8 @@ const handleChange = () => {
 const createComponent = ({ mocks, value, isMulti, creatable }) => {
     return TestRenderer.create(
         <MockedProvider mocks={mocks} addTypename={false}>
-            <CategorySelect 
-                name="categories" 
+            <TagSelect 
+                name="tags" 
                 handleChange={handleChange}
                 value={value}
                 creatable={!!creatable}
@@ -31,25 +31,25 @@ const createComponent = ({ mocks, value, isMulti, creatable }) => {
 
 let component
 
-describe('CategorySelect', () => {
+describe('TagSelect', () => {
     it('should render without throwing an error', function () {
-        createComponent({ mocks: [CATEGORIES_QUERY_MOCK], value: ['test'] })
-        createComponent({ mocks: [CATEGORIES_QUERY_MOCK], value: 'test' })
-        createComponent({ mocks: [CATEGORIES_QUERY_MOCK], value: null })
-        createComponent({ mocks: [CATEGORIES_QUERY_MOCK], isMulti: true })
-        createComponent({ mocks: [CATEGORIES_QUERY_MOCK], creatable: true })
+        createComponent({ mocks: [TAGS_QUERY_MOCK], value: ['test'] })
+        createComponent({ mocks: [TAGS_QUERY_MOCK], value: 'test' })
+        createComponent({ mocks: [TAGS_QUERY_MOCK], value: null })
+        createComponent({ mocks: [TAGS_QUERY_MOCK], isMulti: true })
+        createComponent({ mocks: [TAGS_QUERY_MOCK], creatable: true })
         // createComponent({ mocks, isMulti: true, creatable: true })
     })
 
     it('should render loading state initially', () => {
-        component = createComponent({ mocks: [CATEGORIES_QUERY_MOCK] })
+        component = createComponent({ mocks: [TAGS_QUERY_MOCK] })
         const tree = component.toJSON();
         expect(tree.children).toContain('Loading');
     })
 
     it('should render select', async () => {
         await act( async () => {
-            component = createComponent({ mocks: [CATEGORIES_QUERY_MOCK] })
+            component = createComponent({ mocks: [TAGS_QUERY_MOCK] })
             await wait(100)
             const tree = component.toJSON();
             expect(tree.props.className).toContain('select');
@@ -58,7 +58,7 @@ describe('CategorySelect', () => {
 
     it('should render message on error', async () => {
         await act( async () => {
-            component = createComponent({ mocks: [CATEGORIES_QUERY_MOCK_ERROR] })
+            component = createComponent({ mocks: [TAGS_QUERY_MOCK_ERROR] })
             await wait(100)
             const tree = component.toJSON();
             // console.log('tree', tree)
@@ -67,7 +67,7 @@ describe('CategorySelect', () => {
 
     it('should render error when no data', async () => {
         await act( async () => {
-            component = createComponent({ mocks: [CATEGORIES_QUERY_MOCK_NODATA] })
+            component = createComponent({ mocks: [TAGS_QUERY_MOCK_NODATA] })
             await wait(100)
             const tree = component.toJSON();
             // console.log('tree', tree)

@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for queries/CATEGORIES_QUERY.js</title>
+    <title>Code coverage report for queries/TAGS_QUERY.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,7 +16,7 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">All files</a> / <a href="index.html">queries</a> CATEGORIES_QUERY.js
+      <a href="../index.html">All files</a> / <a href="index.html">queries</a> TAGS_QUERY.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
@@ -57,7 +57,9 @@
 <a name='L9'></a><a href='#L9'>9</a>
 <a name='L10'></a><a href='#L10'>10</a>
 <a name='L11'></a><a href='#L11'>11</a>
-<a name='L12'></a><a href='#L12'>12</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a>
+<a name='L14'></a><a href='#L14'>14</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -68,18 +70,22 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import gql from 'graphql-tag'
 &nbsp;
-const CATEGORIES_QUERY = gql`
-    query CATEGORIES_QUERY {
-        categories {
+const TAGS_QUERY = gql`
+    # query TAGS_QUERY($where: String, $orderBy: String, $skip: Int, $after: String, $before: String, $first: Int, $last: Int) {
+    #     tags(where: $where, orderBy: $orderBy, skip: $skip, after: $after, before: $before, first: $first, last: $last) {
+    query TAGS_QUERY {
+        tags {
             id
             label
         }
     }
 `
 &nbsp;
-export default CATEGORIES_QUERY</pre></td></tr>
+export default TAGS_QUERY</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->

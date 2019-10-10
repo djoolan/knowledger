@@ -13,14 +13,14 @@ class CategorySelect extends Component {
             { ({ data, error, loading }) => {
                 if (loading) return <p>Loading</p>
                 if (error) return <p>Error : { error.message }</p>
-                const options = data.categories.map(category => ({ value: category.label, label: category.label }))
+                const options = data.categories.map(item => ({ value: item.label, label: item.label }))
                 const normalizedValue = value ?
-                    value.constructor === Array
+                    Array.isArray(value)
                         ? value.map(v => v.label)
                         : value.split(',')
                     : null
-                const defaultValue = options && normalizedValue
-                    ? options.filter(category => category && normalizedValue.includes(category.label))
+                const defaultValue = normalizedValue
+                    ? options.filter(option => normalizedValue.includes(option.label))
                     : null
                 const selectProps = {
                     placeholder: (isMulti ? 'Select categories...' : 'Select a category...'),
@@ -34,8 +34,8 @@ class CategorySelect extends Component {
                     isClearable: true,
                 }
                 return (creatable
-                    ? (<CreatableSelect { ...selectProps } />)
-                    : (<Select { ...selectProps } />)
+                    ? <CreatableSelect { ...selectProps } />
+                    : <Select { ...selectProps } />
                 )
             }}
             </Query>
