@@ -15,12 +15,12 @@ class CategorySelect extends Component {
                 if (error) return <p>Error : { error.message }</p>
                 const options = data.categories.map(category => ({ value: category.label, label: category.label }))
                 const normalizedValue = value ?
-                    Array.isArray(value)
+                    value.constructor === Array
                         ? value.map(v => v.label)
                         : value.split(',')
                     : null
-                const defaultValue = normalizedValue
-                    ? options.filter(category => normalizedValue.includes(category.label))
+                const defaultValue = options && normalizedValue
+                    ? options.filter(category => category && normalizedValue.includes(category.label))
                     : null
                 const selectProps = {
                     placeholder: (isMulti ? 'Select categories...' : 'Select a category...'),
@@ -34,8 +34,8 @@ class CategorySelect extends Component {
                     isClearable: true,
                 }
                 return (creatable
-                    ? <CreatableSelect { ...selectProps } />
-                    : <Select { ...selectProps } />
+                    ? (<CreatableSelect { ...selectProps } />)
+                    : (<Select { ...selectProps } />)
                 )
             }}
             </Query>
