@@ -1,1 +1,2 @@
-export const ARTICLES_PER_PAGE = 20
+export const ARTICLE_BLOCKS_PER_PAGE = 8
+export const ARTICLE_LINES_PER_PAGE = 20

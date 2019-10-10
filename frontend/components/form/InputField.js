@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import StyledInputField from './styles/StyledInputField'
 
 class InputField extends Component {
     render() {
         const { name, placeholder, value, handleChange, required } = this.props
         return (
-            <input 
+            <StyledInputField 
                 type="text"
                 value={value}
                 onChange={handleChange}

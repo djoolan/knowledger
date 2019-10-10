@@ -8,7 +8,7 @@ import StyledArticlesContainer from './styles/StyledArticlesContainer';
 import ArticlesDisplayMenu from './ArticlesDisplayMenu'
 import ArticlesFilter from './ArticlesFilter'
 import ArticleBlock from './block/ArticleBlock'
-import { ARTICLES_PER_PAGE } from '../../../constants'
+import { ARTICLE_BLOCKS_PER_PAGE, ARTICLE_LINES_PER_PAGE } from '../../../constants'
 import StyledLoader from '../../loader/styles/StyledLoader'
 import Paginator from '../../utils/Paginator'
 
@@ -24,8 +24,8 @@ class Articles extends Component {
         console.log('this.props.tags', this.props.tags)
         console.log('this.props.categories', this.props.categories)
         const page = parseInt(this.props.page, 10)
-        const skip = (page - 1) * ARTICLES_PER_PAGE
-        const first = ARTICLES_PER_PAGE
+        const skip = (page - 1) * ARTICLE_BLOCKS_PER_PAGE
+        const first = ARTICLE_BLOCKS_PER_PAGE
         const orderBy = 'createdAt_DESC'
         return {
             ...this._getQueryProps(),
@@ -36,7 +36,9 @@ class Articles extends Component {
     }
 
     _getQueryProps = (newProps) => ({
-        page: parseInt(this.props.page, 10),
+        page: newProps
+            ? 1
+            : parseInt(this.props.page, 10),
         ...this._normalizeProp('search'),
         ...this._normalizeProp('tags'),
         ...this._normalizeProp('categories'),
@@ -51,7 +53,7 @@ class Articles extends Component {
             .map(k => `${k}=${newQueryProps[k]}`)
             .join('&')
 
-        console.log('Articles._handleChangeFilter', { page, queryProps, queryString })
+        // console.log('Articles._handleChangeFilter', { page, queryProps, queryString })
 
         Router.push({
                 pathname: `/articles/[page]`,
@@ -69,11 +71,12 @@ class Articles extends Component {
                         if (loading) return <StyledLoader>Loading</StyledLoader>
                         if (error) return <p>Error : { error.message }</p>
                         const { articlesFeed: { articles, count } } = data
+                        const page = parseInt(this.props.page, 10)
                         return (
                             <Fragment>
                                 <Paginator 
                                     page={this.props.page} 
-                                    pageSize={ARTICLES_PER_PAGE} 
+                                    pageSize={ARTICLE_BLOCKS_PER_PAGE} 
                                     count={count}
                                     handleChange={this._handleChange}
                                 />

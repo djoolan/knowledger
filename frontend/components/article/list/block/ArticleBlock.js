@@ -45,10 +45,10 @@ class ArticleBlock extends Component {
                 <a className="direct-link" target="blank" href={article.uri}>
                     <FontAwesomeIcon icon={faExternalLinkAlt} />
                 </a>
-                <p>
+                <p className="author-source">
                     <span className="author">{ article.author }</span> in <span className="source">{ article.source }</span>
                 </p>
-                <p>{ article.summary }</p>
+                <p className="summary">{ article.summary }</p>
                 {/* <p>{ article.takeaway }</p> */}
                 {/* <div className="actionButtons">
                     <Link href={{ pathname: 'edit', query: { id: article.id }}}>

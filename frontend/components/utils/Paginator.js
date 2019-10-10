@@ -20,7 +20,11 @@ class Paginator extends Component {
     }
 
     render() {
-        const maxPageIndex = Math.ceil(this.props.count / this.props.pageSize)
+        const { page, pageSize, count, children, handleChange } = this.props
+        const maxPageIndex = Math.ceil(count / pageSize)
+        // if (page > maxPageIndex) {
+        //     handleChange({ page: maxPageIndex })
+        // }
         return (
             <div>
                 <div className="nav">
@@ -28,13 +32,13 @@ class Paginator extends Component {
                         <FontAwesomeIcon icon={faCaretLeft} />
                     </div>
                     <p className="count">
-                        Page {this.props.page} / {maxPageIndex} ({ this.props.count } articles)
+                        Page {page} / {maxPageIndex} ({ count } articles)
                     </p>
                     <div className="pager next" onClick={this._nextPage}>
                         <FontAwesomeIcon icon={faCaretRight} />
                     </div>
                 </div>
-                {this.props.children}
+                {children}
             </div>
         )
     }

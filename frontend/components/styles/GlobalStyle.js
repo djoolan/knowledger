@@ -12,6 +12,7 @@ const GlobalStyle = createGlobalStyle`
         font-size: 10px;
     }
     *, *:before, *:after {
+        font-family: 'Rokkitt';
         box-sizing: inherit;
     }
     body {

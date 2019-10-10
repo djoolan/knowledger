@@ -46,10 +46,6 @@ class ArticleCreate extends Component {
     }
 
     _handleChange = e => {
-        console.log('ArticleCreate: handleChange', e)
-        console.log('state', this.state)
-        console.log('tags', this.state.tags)
-        console.log('categories', this.state.categories)
         const { name, type, value } = e.target
         const v = type === 'number' ? parseFloat(value) : value
         this.setState({ [name]: v })

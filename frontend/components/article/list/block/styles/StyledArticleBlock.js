@@ -40,6 +40,17 @@ const StyledArticleBlock = styled.li`
         line-height: 1.3;
         /* flex-grow: 1; */
         margin: 0;
+        &.author-source {
+            color: #ccc;
+            .author, .source {
+                color: #aaa;
+                font-weight: bold;
+            }
+            font-size: 11px;
+        }
+        &.summary {
+            margin-top: 10px;
+        }
     }
     .tags {
         margin: 2px 0;

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import TagSelect from '../../tag/form/TagSelect'
 import CategorySelect from '../../category/form/CategorySelect'
 import StyledArticlesFilter from './styles/StyledArticlesFilter'
+import InputField from '../../form/InputField'
 
 const propTypes = {
     handleChange: PropTypes.func.isRequired,
@@ -12,6 +13,10 @@ const propTypes = {
 }
 
 class ArticlesFilter extends Component {
+    state = {
+        search: this.props.search || '',
+    }
+
     _getFilterProps = (newProps) => ({
         ...this.props.search
             ? { search: this.props.search }
@@ -25,24 +30,43 @@ class ArticlesFilter extends Component {
         ...newProps,
     })
 
+    _handleChange = e => {
+        this.props.handleChange(this._getFilterProps(this.state))
+    }
+
+    _handleChangeSearch = e => {
+        const { name, type, value } = e.target
+        const v = type === 'number' ? parseFloat(value) : value
+        this.setState({ [name]: v })
+    }
+
     _handleChangeTags = (newValue, actionMeta) => {
-        console.log('_handleChangeTags', { newValue, actionMeta })
         this.props.handleChange(this._getFilterProps({
             tags: newValue ? newValue.value : '',
         }))
     }
 
     _handleChangeCategories = (newValue, actionMeta) => {
-        console.log('_handleChangeCategories', { newValue, actionMeta })
         this.props.handleChange(this._getFilterProps({
             categories: newValue ? newValue.value : '',
         }))
     }
 
     render() {
-        const { tags, categories } = this.props
+        const { search, tags, categories } = this.props
         return (
-            <StyledArticlesFilter>
+            <StyledArticlesFilter
+                onSubmit={e => { 
+                    e.preventDefault()
+                    this._handleChange(e)
+                }}>
+                <InputField 
+                    type="text"
+                    name="search" 
+                    placeholder="Search..."
+                    value={this.state.search}
+                    handleChange={this._handleChangeSearch}
+                />
                 <TagSelect
                     name="tags"
                     value={tags}
@@ -53,11 +77,7 @@ class ArticlesFilter extends Component {
                     value={categories}
                     handleChange={this._handleChangeCategories}
                 />
-                {/* <div onChangse={handleChange}>
-                    <input type="radio" id="list" name="display" value="list" defaultChecked />
-                    <input type="radio" id="grid" name="display" value="grid" />
-                </div> */}
-                {/* <p>{Object.values({ search, tags, categories } = this.props).join(',')}</p> */}
+                <button type="submit"> Filter </button>
             </StyledArticlesFilter>
         )
     }
