@@ -25,9 +25,9 @@ class InputField extends Component {
 InputField.propTypes = {
     name: PropTypes.string.isRequired,
     label: PropTypes.string,
-    placeholder: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    placeholder: PropTypes.string,
+    value: PropTypes.string,
+    handleChange: PropTypes.func,
     required: PropTypes.bool,
 }
 

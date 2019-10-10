@@ -20,9 +20,9 @@ class Articles extends Component {
     }
 
     _getQueryVariables = () => {
-        console.log('this.props.search', this.props.search)
-        console.log('this.props.tags', this.props.tags)
-        console.log('this.props.categories', this.props.categories)
+        // console.log('this.props.search', this.props.search)
+        // console.log('this.props.tags', this.props.tags)
+        // console.log('this.props.categories', this.props.categories)
         const page = parseInt(this.props.page, 10)
         const skip = (page - 1) * ARTICLE_BLOCKS_PER_PAGE
         const first = ARTICLE_BLOCKS_PER_PAGE

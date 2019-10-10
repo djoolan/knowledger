@@ -23,10 +23,10 @@ class TextareaField extends Component {
 
 TextareaField.propTypes = {
     name: PropTypes.string.isRequired,
-    placeholder: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
-    rows: PropTypes.string.isRequired,
+    placeholder: PropTypes.string,
+    value: PropTypes.string,
+    handleChange: PropTypes.func,
+    rows: PropTypes.string,
     required: PropTypes.bool,
 }
 

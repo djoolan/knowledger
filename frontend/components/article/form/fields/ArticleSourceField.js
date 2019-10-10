@@ -22,7 +22,7 @@ class ArticleSourceField extends Component {
 
 ArticleSourceField.propTypes = {
     value: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    handleChange: PropTypes.func,
 }
 
 export default ArticleSourceField

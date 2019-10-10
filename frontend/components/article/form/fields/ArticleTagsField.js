@@ -24,8 +24,8 @@ class ArticleTagsField extends Component {
 }
 
 ArticleTagsField.propTypes = {
-    value: PropTypes.array.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    value: PropTypes.any,
+    handleChange: PropTypes.func,
 }
 
 export default ArticleTagsField

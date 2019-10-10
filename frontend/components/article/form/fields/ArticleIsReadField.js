@@ -6,7 +6,7 @@ class ArticleIsReadField extends Component {
     render() {
         const { value, handleChange } = this.props
         const name = "isRead"
-        console.log('ArticleIsReadField, value : ', value)
+        // console.log('ArticleIsReadField, value : ', value)
         return (
             <LabelField
                 name={name}
@@ -24,7 +24,7 @@ class ArticleIsReadField extends Component {
 
 ArticleIsReadField.propTypes = {
     value: PropTypes.bool.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    handleChange: PropTypes.func,
 }
 
 export default ArticleIsReadField

@@ -23,7 +23,7 @@ class ArticlesJsonField extends Component {
 
 ArticlesJsonField.propTypes = {
     value: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    handleChange: PropTypes.func,
 }
 
 export default ArticlesJsonField

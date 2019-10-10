@@ -22,7 +22,7 @@ class ArticleAuthorField extends Component {
 
 ArticleAuthorField.propTypes = {
     value: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    handleChange: PropTypes.func,
 }
 
 export default ArticleAuthorField

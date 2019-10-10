@@ -23,7 +23,7 @@ class ArticleUriField extends Component {
 
 ArticleUriField.propTypes = {
     value: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    handleChange: PropTypes.func,
 }
 
 export default ArticleUriField

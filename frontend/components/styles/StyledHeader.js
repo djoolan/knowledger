@@ -13,11 +13,6 @@ const StyledHeader = styled.header`
         width: 100%;
         height: 80px;
         box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.08);
-        /* border-bottom: 5px dashed ${props => props.theme.primary}; */
-        /* @media (max-width: ${props => props.theme.maxWidth}) {
-            grid-template-columns: 1fr;
-            justify-content: center;
-        } */
     }
     .sub-navbar {
         display: grid;

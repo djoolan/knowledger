@@ -50,7 +50,7 @@ describe('TagSelect', () => {
     it('should render select', async () => {
         await act( async () => {
             component = createComponent({ mocks: [TAGS_QUERY_MOCK] })
-            await wait(100)
+            await wait(200)
             const tree = component.toJSON();
             expect(tree.props.className).toContain('select');
         })

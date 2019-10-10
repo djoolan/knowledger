@@ -24,8 +24,8 @@ class ArticleCategoriesField extends Component {
 }
 
 ArticleCategoriesField.propTypes = {
-    value: PropTypes.array.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    value: PropTypes.any,
+    handleChange: PropTypes.func,
 }
 
 export default ArticleCategoriesField

@@ -52,23 +52,23 @@ class ArticleUpdate extends Component {
     }
 
     _handleChange = e => {
-        console.log('_handleChange', e)
+        // console.log('_handleChange', e)
         const { name, type, value, checked } = e.target
         const v = type === 'number'
             ? parseFloat(value)
             : type === 'checkbox'
                 ? checked
                 : value
-        console.log('_handleChange', { name, type, checked, value, v })
+        // console.log('_handleChange', { name, type, checked, value, v })
         this.setState({ [name]: v })
     }
 
     updateCacheAfterMutation = (store, article) => {
-        console.log('article', article)
+        // console.log('article', article)
         const data = store.readQuery({ query: ARTICLES_QUERY })
         const cachedArticle = data.articles.find(a => a.id === article.id)
         Object.keys(article).forEach(p => cachedArticle[p] = article[p])
-        console.log('cachedArticle', cachedArticle)
+        // console.log('cachedArticle', cachedArticle)
     }
 
     render() {

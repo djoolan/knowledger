@@ -23,8 +23,8 @@ class ArticleReadStatusField extends Component {
 }
 
 ArticleReadStatusField.propTypes = {
-    value: PropTypes.array.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    value: PropTypes.array,
+    handleChange: PropTypes.func,
 }
 
 export default ArticleReadStatusField

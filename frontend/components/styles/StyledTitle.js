@@ -6,8 +6,6 @@ const StyledTitle = styled.div`
     position: relative;
     a {
         padding: 0.3rem 0.6rem;
-        /* color: ${props => props.theme.primary }; */
-        /* text-transform: uppercase; */
         text-decoration: none;
         font-weight: 300;
         color: ${props => props.theme.primary};

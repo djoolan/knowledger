@@ -66,8 +66,8 @@ class ArticleCreate extends Component {
                 update={(store, { data: { createArticle } }) => update(store, createArticle)}
             >
             {(createArticle, { data, error, loading }) => {
-                console.log(data)
-                console.log(this.state)
+                // console.log(data)
+                // console.log(this.state)
                 return (
                     <ArticleForm
                         loading

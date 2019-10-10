@@ -27,7 +27,6 @@ class ArticlesImport extends Component {
                         onSubmit={async e => { 
                             e.preventDefault()
                             const response = await importArticles();
-                            console.log(response)
                         }}>
                         <Error error={error}/>
                         <fieldset>

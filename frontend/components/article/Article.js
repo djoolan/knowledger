@@ -56,7 +56,7 @@ function Article({ router }) {
                     if (loading) return <StyledLoader>Loading</StyledLoader>
                     if (error) return <StyledArticleForm>Error : { error.message }</StyledArticleForm>
                     const { article } = data
-                    console.log('article', article)
+                    // console.log('article', article)
                     return (
                         <Fragment>
                             <ArticleDelete 
@@ -73,5 +73,7 @@ function Article({ router }) {
             </Query>
         )
 }
+export const articleComponentFactory = Article
+export const ArticleComponent = Article
 
 export default withRouter(Article)

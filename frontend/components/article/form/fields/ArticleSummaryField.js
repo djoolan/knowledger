@@ -23,7 +23,7 @@ class ArticleSummaryField extends Component {
 
 ArticleSummaryField.propTypes = {
     value: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    handleChange: PropTypes.func,
 }
 
 export default ArticleSummaryField

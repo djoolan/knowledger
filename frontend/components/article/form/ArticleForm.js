@@ -33,7 +33,6 @@ class ArticleForm extends Component {
                 onSubmit={async e => { 
                     e.preventDefault()
                     const response = await formAction();
-                    console.log(response)
                 }}>
                 <Error error={error}/>
                 <div role="group">

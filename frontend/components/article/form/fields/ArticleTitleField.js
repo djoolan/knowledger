@@ -23,7 +23,7 @@ class ArticleTitleField extends Component {
 
 ArticleTitleField.propTypes = {
     value: PropTypes.string.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    handleChange: PropTypes.func,
 }
 
 export default ArticleTitleField
