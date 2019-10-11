@@ -24,10 +24,12 @@ class ArticleCreate extends Component {
     }
     
     _handleChangeReadStatus = (newValue, actionMeta) => {
+        // console.log('_handleChangeReadStatus', newValue)
         this.setState({ readStatus: newValue })
     }
 
     _handleChangeTags = (newValue, actionMeta) => {
+        // console.log('_handleChangeTags', newValue)
         this.setState(newValue
             ? {
                 tags: newValue.map(v => v.label).join(','),
@@ -40,6 +42,7 @@ class ArticleCreate extends Component {
     }
 
     _handleChangeCategories = (newValue, actionMeta) => {
+        // console.log('_handleChangeCategories', newValue)
         this.setState(newValue
             ? {
                 categories: newValue.map(v => v.label).join(','),
@@ -52,8 +55,13 @@ class ArticleCreate extends Component {
     }
 
     _handleChange = e => {
-        const { name, type, value } = e.target
-        const v = type === 'number' ? parseFloat(value) : value
+        const { name, type, value, checked } = e.target
+        const v = type === 'number'
+            ? parseFloat(value)
+            : type === 'checkbox'
+                ? checked
+                : value
+        // console.log('_handleChange', { name, type, checked, value, v })
         this.setState({ [name]: v })
     }
 
@@ -66,10 +74,11 @@ class ArticleCreate extends Component {
                 update={(store, { data: { createArticle } }) => update(store, createArticle)}
             >
             {(createArticle, { data, error, loading }) => {
-                // console.log(data)
-                // console.log(this.state)
+                // console.log('data', data)
+                // console.log('this.state', this.state)
                 return (
                     <ArticleForm
+                        className="article-create-form"
                         loading
                         error={error}
                         state={this.state}

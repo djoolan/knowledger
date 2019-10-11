@@ -16,6 +16,7 @@ import ArticleReadStatusField from './fields/ArticleReadStatusField'
 class ArticleForm extends Component {
     render() {
         const { 
+            className,
             loading, 
             error, 
             state, 
@@ -26,8 +27,10 @@ class ArticleForm extends Component {
             formAction, 
             submitLabel,
         } = this.props
+
         return (
             <StyledArticleForm
+                className={className}
                 disabled={loading}
                 aria-busy={loading}
                 onSubmit={async e => { 
@@ -54,6 +57,7 @@ class ArticleForm extends Component {
 
 ArticleForm.propTypes = {
     state: PropTypes.object.isRequired,
+    className: PropTypes.string,
     handleChange: PropTypes.func.isRequired,
     handleChangeTags: PropTypes.func.isRequired,
     handleChangeCategories: PropTypes.func.isRequired,

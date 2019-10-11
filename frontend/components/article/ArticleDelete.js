@@ -22,7 +22,7 @@ class ArticleDelete extends Component {
             {(deleteArticle, { data, error, loading }) => {
                 return (
                     <StyledArticleForm
-                        className="delete"
+                        className="article-delete-form"
                         disabled={loading}
                         aria-busy={loading}
                         onSubmit={async e => { 

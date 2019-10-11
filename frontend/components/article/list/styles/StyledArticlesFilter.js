@@ -15,7 +15,7 @@ const StyledArticlesFilter = styled.form`
             margin-right: 0;
         }
     }
-    .select {
+    .select-tags, .select-categories {
         text-align: left;
         width: 200px;
         /* height: 20px; */

@@ -63,15 +63,16 @@ class ArticleUpdate extends Component {
         this.setState({ [name]: v })
     }
 
-    updateCacheAfterMutation = (store, article) => {
-        // console.log('article', article)
-        const data = store.readQuery({ query: ARTICLES_QUERY })
-        const cachedArticle = data.articles.find(a => a.id === article.id)
-        Object.keys(article).forEach(p => cachedArticle[p] = article[p])
-        // console.log('cachedArticle', cachedArticle)
-    }
+    // updateCacheAfterMutation = (store, article) => {
+    //     // console.log('article', article)
+    //     const data = store.readQuery({ query: ARTICLES_QUERY })
+    //     const cachedArticle = data.articles.find(a => a.id === article.id)
+    //     Object.keys(article).forEach(p => cachedArticle[p] = article[p])
+    //     // console.log('cachedArticle', cachedArticle)
+    // }
 
     render() {
+        // console.log('ArticleUpdate, this.props : ', this.props)
         const { update } = this.props
         return (
             <Mutation 
@@ -82,6 +83,7 @@ class ArticleUpdate extends Component {
             {(updateArticle, { data, error, loading }) => {
                 return (
                     <ArticleForm
+                        className="article-update-form"
                         loading
                         error={error}
                         state={this.state}

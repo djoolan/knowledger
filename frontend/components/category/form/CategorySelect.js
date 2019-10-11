@@ -28,8 +28,8 @@ class CategorySelect extends Component {
                     isMulti,
                     options,
                     defaultValue,
-                    className: 'select',
-                    classNamePrefix: 'select' ,
+                    className: 'select-categories',
+                    classNamePrefix: 'select-categories' ,
                     onChange: handleChange,
                     isClearable: true,
                 }

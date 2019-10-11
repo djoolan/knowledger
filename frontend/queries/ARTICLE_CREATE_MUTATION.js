@@ -5,23 +5,21 @@ const ARTICLE_CREATE_MUTATION = gql`
         $title: String!
         $uri: String
         $summary: String
-        $takeaway: String
         $source: String
         $author: String
+        $isRead: Boolean
         $tags: String
         $categories: String
-        $image: String
     ) {
         createArticle(
             title: $title
             uri: $uri
             summary: $summary
-            takeaway: $takeaway
             source: $source
             author: $author
+            isRead: $isRead,
             tags: $tags
             categories: $categories
-            image: $image
         ) {
             id
         }

@@ -1,3 +1,4 @@
+import { ARTICLE } from './ARTICLE_MOCKS' 
 import ARTICLE_QUERY from '../ARTICLE_QUERY'
 
 export const ARTICLE_QUERY_MOCK = variables => ({
@@ -8,28 +9,10 @@ export const ARTICLE_QUERY_MOCK = variables => ({
     result: {
         data: {
             article: {
-                id: 1, 
-                title: 'Title',
-                uri: 'http://www.google.com',
-                summary: 'Summary',
-                source: 'Source',
-                author: 'Author',
-                isRead: true,
+                ...ARTICLE,
                 image: '',
                 createdAt: '',
                 updatedAt: '',
-                tags: [
-                    {
-                        id: 1,
-                        label: 'Tag'
-                    },
-                ],
-                categories: [
-                    {
-                        id: 1,
-                        label: 'Category',
-                    },
-                ],
             },
         },
     },
@@ -48,7 +31,7 @@ export const ARTICLE_QUERY_MOCK_NODATA = variables => ({
     ...ARTICLE_QUERY_MOCK(variables),
     result: {
         data: {
-            article: null,
+            article: { id: null },
         },
     },
 })

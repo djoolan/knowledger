@@ -28,8 +28,8 @@ class TagSelect extends Component {
                     isMulti,
                     options,
                     defaultValue,
-                    className: 'select',
-                    classNamePrefix: 'select' ,
+                    className: 'select-tags',
+                    classNamePrefix: 'select-tags' ,
                     onChange: handleChange,
                     isClearable: true,
                 }

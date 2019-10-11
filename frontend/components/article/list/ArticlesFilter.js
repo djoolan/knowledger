@@ -37,12 +37,11 @@ class ArticlesFilter extends Component {
 
     _handleChangeSearch = e => {
         const { name, type, value } = e.target
-        const v = type === 'number' ? parseFloat(value) : value
-        // console.log('_handleChangeSearch', { name, type, value, v })
-        this.setState({ [name]: v })
+        this.setState({ [name]: value })
     }
 
     _handleChangeTags = (newValue, actionMeta) => {
+        // console.log('_handleChangeTags', newValue)
         this.props.handleChange(this._getFilterProps({
             tags: newValue ? newValue.value : '',
         }))
@@ -70,12 +69,16 @@ class ArticlesFilter extends Component {
                     value={this.state.search}
                     handleChange={this._handleChangeSearch}
                 />
-                <TagSelect
-                    name="tags"
-                    value={tags}
-                    handleChange={this._handleChangeTags}
-                />
+                <div className="tags">
+                    <TagSelect
+                        className="tags"
+                        name="tags"
+                        value={tags}
+                        handleChange={this._handleChangeTags}
+                    />
+                </div>
                 <CategorySelect
+                    className="categories"
                     name="categories"
                     value={categories}
                     handleChange={this._handleChangeCategories}

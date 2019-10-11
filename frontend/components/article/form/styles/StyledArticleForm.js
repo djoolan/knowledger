@@ -113,7 +113,11 @@ const StyledArticleForm = styled.form`
             opacity: 0.7;
         }
     }
-    &.delete {
+    &.article-create-form {
+    }
+    &.article-update-form {
+    }
+    &.article-delete-form {
         div[role=group] {
             flex-direction: row-reverse;
         }

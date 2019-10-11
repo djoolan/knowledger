@@ -16,13 +16,13 @@ const articleFactory = (params) => ({
     tags: [
         {
             id: 1,
-            label: 'Tag'
+            label: 'JavaScript'
         },
     ],
     categories: [
         {
             id: 1,
-            label: 'Category',
+            label: 'Programming',
         },
     ],
     ...params,

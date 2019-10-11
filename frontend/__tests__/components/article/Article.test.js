@@ -6,15 +6,23 @@ import { ThemeProvider } from 'styled-components'
 import theme from '../../../components/styles/Theme'
 import wait from 'waait'
 import waitForExpect from 'wait-for-expect'
-import Router from 'next/router'
+import Router, { withRouter } from 'next/router'
 import { ArticleComponent, articleComponentFactory } from '../../../components/article/Article'
 import { TAGS_QUERY_MOCK } from '../../../queries/__mocks__/TAGS_QUERY_MOCKS'
-import { CATEGORIES_QUERY_MOCK } from '..//../../queries/__mocks__/CATEGORIES_QUERY_MOCKS'
+import { CATEGORIES_QUERY_MOCK } from '../../../queries/__mocks__/CATEGORIES_QUERY_MOCKS'
+import { READSTATUS_QUERY_MOCK } from '../../../queries/__mocks__/READSTATUS_QUERY_MOCKS'
 import { 
     ARTICLE_QUERY_MOCK, 
     ARTICLE_QUERY_MOCK_ERROR, 
     ARTICLE_QUERY_MOCK_NODATA,
 } from '../../../queries/__mocks__/ARTICLE_QUERY_MOCKS'
+import { 
+    articleInput,
+    articleOutput,
+    ARTICLE_UPDATE_MUTATION_MOCK, 
+    ARTICLE_UPDATE_MUTATION_MOCK_ERROR, 
+    ARTICLE_UPDATE_MUTATION_MOCK_NODATA,
+} from '../../../queries/__mocks__/ARTICLE_UPDATE_MUTATION_MOCKS'
 
 let wrapper
 
@@ -46,40 +54,65 @@ const mountAndWaitForComponent = async params => {
     return wrapper
 }
 
-// const createComponent = ({ mocks, query }) => {
-//     return TestRenderer.create(
-//         <ThemeProvider theme={theme}>
-//             <MockedProvider mocks={mocks} addTypename={false}>
-//                 <ArticleComponent router={{query}}/>
-//             </MockedProvider>
-//         </ThemeProvider>
-//     )
-// }
-// jest.mock('next/router', ()=> ({push: jest.fn()}))
+const sharedMocks = [
+    TAGS_QUERY_MOCK, 
+    CATEGORIES_QUERY_MOCK, 
+    READSTATUS_QUERY_MOCK
+]
 
+jest.mock('next/router', ()=> ({
+    push: jest.fn(),
+    withRouter: arg => { 
+        // arg.router = { push: jest.fn() }
+        return arg
+    }
+}))
+
+// console.log(ARTICLE_UPDATE_MUTATION_MOCK({ id: 1, title: 'Updated title' }))
 describe('Article', () => {
 
     it('should render without throwing an error', async () => {
-        await mountAndWaitForComponent({ mocks: [ARTICLE_QUERY_MOCK(), TAGS_QUERY_MOCK, CATEGORIES_QUERY_MOCK], query: { id: 'create' } })
-        await mountAndWaitForComponent({ mocks: [ARTICLE_QUERY_MOCK({ id: 1 }), TAGS_QUERY_MOCK, CATEGORIES_QUERY_MOCK], query: { id: 1 } })
+    })
+
+    it('should render without throwing an error', async () => {
+        await mountAndWaitForComponent({ mocks: [ARTICLE_QUERY_MOCK(), ...sharedMocks], query: { id: 'create' } })
+        wrapper = await mountAndWaitForComponent({ mocks: [ARTICLE_QUERY_MOCK({ id: 1 }), ...sharedMocks], query: { id: 1 } })
+        // console.log(wrapper.html())
     })
 
     it('should render a message if an error occurred', async () => {
-        await mountAndWaitForComponent({ mocks: [ARTICLE_QUERY_MOCK_ERROR(), TAGS_QUERY_MOCK, CATEGORIES_QUERY_MOCK], query: { id: 'create' } })
-        await mountAndWaitForComponent({ mocks: [ARTICLE_QUERY_MOCK_ERROR({ id: 1 }), TAGS_QUERY_MOCK, CATEGORIES_QUERY_MOCK], query: { id: 1 } })
+        wrapper = await mountAndWaitForComponent({ mocks: [ARTICLE_QUERY_MOCK_ERROR(), ...sharedMocks], query: { id: 'create' } })
+        // console.log('wrapper for error', wrapper.html())
+        wrapper = await mountAndWaitForComponent({ mocks: [ARTICLE_QUERY_MOCK_ERROR({ id: 1 }), ...sharedMocks], query: { id: 1 } })
     })
 
-    it('should invoke router when submitting the form', async () => {
-        wrapper = await mountAndWaitForComponent({ mocks: [ARTICLE_QUERY_MOCK({ id: 1 }), TAGS_QUERY_MOCK, CATEGORIES_QUERY_MOCK], query: { id: 1 } })
-        // wrapper = await mountAndWaitForComponent({ mocks: [mockBase, TAGS_QUERY_MOCK, CATEGORIES_QUERY_MOCK], query: queryBase })
-        // const searchInput = wrapper.find('.articles-filter-form input[name="search"]')
-        // const submitBtn = wrapper.find('.articles-filter-form button[type="submit"]')
-        // searchInput.instance().value = search
-        // searchInput.simulate('change')
-        // expect(Router.push).toHaveBeenCalled()
-        // wrapper.find('form').first().simulate('submit', { preventDefault () {} });
-        // expect(Router.push).toHaveBeenCalled()
-        // wrapper.unmount()
-    })
+    // console.log(ARTICLE_QUERY_MOCK({}))
+    // console.log(ARTICLE_UPDATE_MUTATION_MOCK({}))
+    // it('should invoke router when submitting the form', async () => {
+    //     const updatedProps = { id: 1, title: 'Title' }
+    //     wrapper = await mountAndWaitForComponent({ 
+    //         mocks: [
+    //             ARTICLE_QUERY_MOCK({ id: 1 }), 
+    //             ARTICLE_UPDATE_MUTATION_MOCK(updatedProps),
+    //             ...sharedMocks,
+    //         ], 
+    //         query: { id: 1 },
+    //     })
+    //     await wait(1000)
+    //     const deleteForm = wrapper.find('form.article-delete-form').hostNodes()
+    //     const createForm = wrapper.find('form.article-create-form').hostNodes()
+    //     const updateForm = wrapper.find('form.article-update-form').hostNodes()
+    //     // wrapper.find('TagSelect').invoke('handleChange')(['JavaScript'])
+    //     // wrapper.find('CategorySelect').invoke('handleChange')(['Programming'])
+
+    //     await act(async () => {
+    //         const titleInput = updateForm.find('input[name="title"]').hostNodes()
+    //         titleInput.instance().value = updatedProps.title
+    //         titleInput.simulate('change')
+    //         updateForm.simulate('submit', { preventDefault () {} })
+    //         await wait(0)
+    //     })
+    //     // expect(Router.push).toHaveBeenCalled()
+    // })
 
 })
